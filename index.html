@@ -27,18 +27,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 <style id="i18n-arabic-styles">
-  /* Mobile sideways lock.
-     overflow-x: clip clips bleed without creating a scroll container,
-     so position:sticky hero motion keeps working.
-     Do not use overflow:hidden on .cinematic-scroll-stage or .cinematic-pin. */
-  @media (max-width: 809px) {
-    html,
-    body {
-      max-width: 100%;
-      overflow-x: clip;
-      overscroll-behavior-x: none;
-    }
-  }
+  /* Do not set overflow on html, the sticky stage, or the pin — that breaks hero scroll. */
 
   /* Almarai thin (300) for all Arabic text; LTR layout matches English */
   html[lang="ar"] body,
@@ -3272,12 +3261,7 @@
       .hero-bio-sheet-inner{position:relative;z-index:1;width:min(42rem,92vw);max-height:min(88svh,100%);overflow:auto;padding:clamp(2rem,5vw,3.5rem) clamp(1.25rem,4vw,2.5rem);display:flex;flex-direction:column;gap:1.35rem;-webkit-overflow-scrolling:touch;opacity:var(--text-progress, 0);transform:translate3d(0,calc((1 - var(--text-progress, 0)) * 1.1rem),0);will-change:opacity,transform;backface-visibility:hidden;contain:layout paint}
       .hero-bio-p{margin:0;font-family:"Inter",Helvetica,Arial,sans-serif;font-size:clamp(0.95rem,2.1vw,1.2rem);font-weight:400;line-height:1.65;letter-spacing:-0.01em;color:#050609}
       html[lang="ar"] .hero-bio-p{font-family:"Almarai","Noto Sans Arabic","Inter",sans-serif;font-weight:300;line-height:1.75}
-      @media(max-width:809px){
-        .cinematic-scroll-stage{height:220svh;max-width:100%;overflow-x:clip}
-        .hero-bio-sheet-fog{left:0;right:0;top:0;bottom:0}
-        .hero-bio-sheet-inner{gap:1.1rem}
-        .hero-bio-p{font-size:clamp(0.9rem,3.8vw,1.05rem);line-height:1.6}
-      }
+      @media(max-width:809px){.cinematic-scroll-stage{height:220svh}.hero-bio-sheet-inner{gap:1.1rem}.hero-bio-p{font-size:clamp(0.9rem,3.8vw,1.05rem);line-height:1.6}}
       @media(prefers-reduced-motion:reduce){.cinematic-scroll-stage{height:auto}.cinematic-pin{position:relative;height:auto}.cinematic-hero{position:relative!important;inset:auto;--bio-progress:0;filter:none;transform:none}.cinematic-title-one,.cinematic-copy,.cinematic-copy-a{opacity:1!important;transform:none!important}.hero-t1-label{opacity:1!important}.hero-bio-sheet{position:relative;transform:none;pointer-events:auto;background:#fff;overflow:hidden}.hero-bio-sheet-fog{display:none}.hero-bio-sheet-inner{opacity:1!important;transform:none!important}}
     </style>
     <script>
@@ -3368,6 +3352,36 @@
         } else {
           setupCinematicHero();
         }
+      })();
+    </script>
+    <script>
+      /* Phone-only sideways lock. Does not set overflow, so sticky hero scroll stays intact. */
+      (() => {
+        if (!matchMedia('(max-width: 809px)').matches) return;
+
+        const snapX = () => {
+          if (scrollX !== 0) scrollTo(0, scrollY);
+        };
+
+        addEventListener('scroll', snapX, { passive: true });
+        addEventListener('scrollend', snapX, { passive: true });
+
+        let startX = 0;
+        let startY = 0;
+        addEventListener('touchstart', (event) => {
+          const touch = event.touches[0];
+          if (!touch) return;
+          startX = touch.clientX;
+          startY = touch.clientY;
+        }, { passive: true });
+
+        addEventListener('touchmove', (event) => {
+          const touch = event.touches[0];
+          if (!touch) return;
+          const dx = Math.abs(touch.clientX - startX);
+          const dy = Math.abs(touch.clientY - startY);
+          if (dx > dy && dx > 10) event.preventDefault();
+        }, { passive: false });
       })();
     </script>
 
