@@ -27,14 +27,17 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 <style id="i18n-arabic-styles">
-  /* Soft page sideways lock — do not touch cinematic sticky/overflow */
-  html, body {
-    max-width: 100%;
-    overscroll-behavior-x: none;
-  }
-
-  body {
-    overflow-x: hidden;
+  /* Mobile sideways lock.
+     overflow-x: clip clips bleed without creating a scroll container,
+     so position:sticky hero motion keeps working.
+     Do not use overflow:hidden on .cinematic-scroll-stage or .cinematic-pin. */
+  @media (max-width: 809px) {
+    html,
+    body {
+      max-width: 100%;
+      overflow-x: clip;
+      overscroll-behavior-x: none;
+    }
   }
 
   /* Almarai thin (300) for all Arabic text; LTR layout matches English */
@@ -3246,9 +3249,7 @@
 
     <style>
       .cinematic-scroll-stage{position:relative;height:220svh;background:#000}
-      /* overflow on pin (sticky itself) is OK — clips slides/fog without breaking sticky.
-         Never set overflow on .cinematic-scroll-stage (sticky parent). */
-      .cinematic-pin{position:sticky;top:0;height:100svh;overflow:hidden;isolation:isolate;width:100%;max-width:100%}
+      .cinematic-pin{position:sticky;top:0;height:100svh;overflow:visible;isolation:isolate}
       .cinematic-hero{
         --bio-progress:0;
         position:absolute!important;
@@ -3256,7 +3257,6 @@
         height:100svh;
         min-height:100svh!important;
         isolation:isolate;
-        overflow:hidden;
         filter:blur(calc(var(--bio-progress) * 14px)) brightness(calc(1 - var(--bio-progress) * 0.2));
         transform:scale(calc(1 + var(--bio-progress) * 0.03));
         transition:none;
@@ -3266,13 +3266,18 @@
       .cinematic-copy{position:absolute;z-index:10}
       .cinematic-copy-a{margin:0}
       .cinematic-title-one{z-index:10}
-      .hero-bio-sheet{position:absolute;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;background:transparent;color:#050609;transform:translate3d(0,calc((1 - var(--bio-progress, 0)) * 105%),0);will-change:transform;pointer-events:none;overflow:hidden}
-      .hero-bio-sheet-fog{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 85% 70% at 50% 55%,#fff 0%,#fff 48%,rgba(255,255,255,.96) 60%,rgba(255,255,255,.7) 74%,rgba(255,255,255,.28) 88%,transparent 100%);filter:blur(2.25rem);transform:translateZ(0);opacity:calc(0.55 + var(--bio-progress, 0) * 0.45)}
+      .hero-bio-sheet{position:absolute;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;background:transparent;color:#050609;transform:translate3d(0,calc((1 - var(--bio-progress, 0)) * 105%),0);will-change:transform;pointer-events:none;overflow:visible}
+      .hero-bio-sheet-fog{position:absolute;left:-25%;right:-25%;top:-20%;bottom:-25%;z-index:0;pointer-events:none;background:radial-gradient(ellipse 70% 55% at 50% 55%,#fff 0%,#fff 42%,rgba(255,255,255,.92) 58%,rgba(255,255,255,.55) 72%,rgba(255,255,255,.2) 84%,transparent 100%);filter:blur(2.5rem);transform:translateZ(0);opacity:calc(0.55 + var(--bio-progress, 0) * 0.45)}
       .cinematic-pin[data-bio-open="1"] .hero-bio-sheet{pointer-events:auto}
-      .hero-bio-sheet-inner{position:relative;z-index:1;width:min(42rem,92%);max-width:100%;box-sizing:border-box;max-height:min(88svh,100%);overflow:auto;padding:clamp(2rem,5vw,3.5rem) clamp(1.25rem,4vw,2.5rem);display:flex;flex-direction:column;gap:1.35rem;-webkit-overflow-scrolling:touch;opacity:var(--text-progress, 0);transform:translate3d(0,calc((1 - var(--text-progress, 0)) * 1.1rem),0);will-change:opacity,transform;backface-visibility:hidden;contain:layout paint}
+      .hero-bio-sheet-inner{position:relative;z-index:1;width:min(42rem,92vw);max-height:min(88svh,100%);overflow:auto;padding:clamp(2rem,5vw,3.5rem) clamp(1.25rem,4vw,2.5rem);display:flex;flex-direction:column;gap:1.35rem;-webkit-overflow-scrolling:touch;opacity:var(--text-progress, 0);transform:translate3d(0,calc((1 - var(--text-progress, 0)) * 1.1rem),0);will-change:opacity,transform;backface-visibility:hidden;contain:layout paint}
       .hero-bio-p{margin:0;font-family:"Inter",Helvetica,Arial,sans-serif;font-size:clamp(0.95rem,2.1vw,1.2rem);font-weight:400;line-height:1.65;letter-spacing:-0.01em;color:#050609}
       html[lang="ar"] .hero-bio-p{font-family:"Almarai","Noto Sans Arabic","Inter",sans-serif;font-weight:300;line-height:1.75}
-      @media(max-width:809px){.cinematic-scroll-stage{height:220svh}.hero-bio-sheet-inner{gap:1.1rem;padding-inline:1.15rem}.hero-bio-p{font-size:clamp(0.9rem,3.8vw,1.05rem);line-height:1.6}}
+      @media(max-width:809px){
+        .cinematic-scroll-stage{height:220svh;max-width:100%;overflow-x:clip}
+        .hero-bio-sheet-fog{left:0;right:0;top:0;bottom:0}
+        .hero-bio-sheet-inner{gap:1.1rem}
+        .hero-bio-p{font-size:clamp(0.9rem,3.8vw,1.05rem);line-height:1.6}
+      }
       @media(prefers-reduced-motion:reduce){.cinematic-scroll-stage{height:auto}.cinematic-pin{position:relative;height:auto}.cinematic-hero{position:relative!important;inset:auto;--bio-progress:0;filter:none;transform:none}.cinematic-title-one,.cinematic-copy,.cinematic-copy-a{opacity:1!important;transform:none!important}.hero-t1-label{opacity:1!important}.hero-bio-sheet{position:relative;transform:none;pointer-events:auto;background:#fff;overflow:hidden}.hero-bio-sheet-fog{display:none}.hero-bio-sheet-inner{opacity:1!important;transform:none!important}}
     </style>
     <script>
