@@ -27,6 +27,16 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 <style id="i18n-arabic-styles">
+  /* Soft page sideways lock — do not touch cinematic sticky/overflow */
+  html, body {
+    max-width: 100%;
+    overscroll-behavior-x: none;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
   /* Almarai thin (300) for all Arabic text; LTR layout matches English */
   html[lang="ar"] body,
   html[lang="ar"] body *:not(iconify-icon):not(.font-mono):not([class*="IBM_Plex_Mono"]):not(.brand-mark):not([data-i18n-html="hero.leadOwner"]):not(.bg-watermark) {
@@ -140,9 +150,11 @@
   }
 
   html[lang="ar"] .cinematic-copy {
+    top: 56% !important;
+    bottom: auto !important;
     left: auto !important;
-    right: 2.75rem !important;
-    max-width: min(28rem, 72vw);
+    right: 1.25rem !important;
+    max-width: min(36rem, 88vw);
     text-align: right;
     transform: translate3d(calc(var(--bio-progress, 0) * -48vw), 0, 0) !important;
     will-change: transform;
@@ -151,25 +163,34 @@
   @media (min-width: 768px) {
     html[lang="ar"] .cinematic-copy {
       right: 3.5rem !important;
+      left: auto !important;
+      top: 58% !important;
     }
   }
 
   html[lang="en"] .cinematic-copy {
-    top: 3.75rem !important;
+    top: 56% !important;
+    bottom: auto !important;
+    left: 2.75rem !important;
+    right: auto !important;
+    max-width: min(40rem, 86vw);
     transform: translate3d(calc(var(--bio-progress, 0) * 32vw), 0, 0) !important;
     will-change: transform;
   }
 
   @media (min-width: 768px) {
     html[lang="en"] .cinematic-copy {
-      top: 28% !important;
+      left: 7.5rem !important;
+      top: 58% !important;
     }
   }
 
   html[lang="en"] .cinematic-copy-a[data-i18n-html="hero.leadName"] {
-    font-size: clamp(2.35rem, 6.8vw, 5.75rem) !important;
+    font-size: clamp(3.7rem, 11vw, 6.5rem) !important;
     font-weight: 700 !important;
-    line-height: 0.92 !important;
+    line-height: 0.95 !important;
+    text-transform: none !important;
+    white-space: normal !important;
   }
 
   html[lang="ar"] .cinematic-copy-a[data-i18n-html="hero.leadName"] {
@@ -177,11 +198,12 @@
     flex-direction: column;
     align-items: flex-end;
     gap: 0.08em;
-    font-size: clamp(2.85rem, 9vw, 6.5rem) !important;
+    font-size: clamp(4.2rem, 14vw, 9rem) !important;
     font-weight: 400 !important;
     line-height: 1 !important;
     letter-spacing: 0 !important;
     white-space: normal !important;
+    text-align: right;
   }
 
   html[lang="ar"] .cinematic-copy-a .hero-name-title {
@@ -243,7 +265,7 @@
   }
 
   .cinematic-title-one {
-    white-space: normal !important;
+    white-space: nowrap !important;
     top: 56% !important;
     bottom: auto !important;
     left: 5.75rem !important;
@@ -253,8 +275,8 @@
     font-weight: 600 !important;
     line-height: 1.12 !important;
     letter-spacing: -0.07em !important;
-    text-transform: uppercase !important;
-    max-width: min(18rem, 78vw) !important;
+    text-transform: none !important;
+    max-width: none !important;
     padding: 0.5rem 0.65rem 0.6rem !important;
     border: 1.5px solid #6eb5e8 !important;
     box-sizing: border-box !important;
@@ -274,17 +296,17 @@
   }
 
   html[lang="ar"] .cinematic-title-one {
-    font-family: "Almarai", "Noto Sans Arabic", "Inter", sans-serif !important;
+    font-family: "Inter", Helvetica, Arial, sans-serif !important;
     font-size: clamp(1.65rem, 5vw, 2.4rem) !important;
-    font-weight: 800 !important;
-    letter-spacing: -0.04em !important;
-    line-height: 1.22 !important;
-    white-space: normal !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.07em !important;
+    line-height: 1.12 !important;
+    white-space: nowrap !important;
     text-transform: none !important;
     color: #fff !important;
     left: 3.25rem !important;
-    padding: 0 !important;
-    border: none !important;
+    padding: 0.5rem 0.65rem 0.6rem !important;
+    border: 1.5px solid #6eb5e8 !important;
     background: transparent !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
@@ -292,11 +314,11 @@
   }
 
   html[lang="ar"] .cinematic-title-one .hero-t1-label,
-  html[lang="ar"] .cinematic-title-one .hero-t1-label *,
-  html[lang="ar"] .cinematic-title-one .hero-t1-and {
-    font-family: "Almarai", "Noto Sans Arabic", sans-serif !important;
-    font-weight: 800 !important;
+  html[lang="ar"] .cinematic-title-one .hero-t1-label * {
+    font-family: "Inter", Helvetica, Arial, sans-serif !important;
+    font-weight: 600 !important;
     opacity: 1 !important;
+    text-transform: none !important;
   }
 
   html[lang="ar"] .hero-t1-and {
@@ -309,35 +331,39 @@
   }
 
   @media (max-width: 809px) {
-    .cinematic-title-one {
-      top: 54% !important;
-      left: 3.75rem !important;
-      font-size: clamp(1.65rem, 6.5vw, 2.2rem) !important;
-      transform: translate3d(calc(var(--bio-progress, 0) * 18vw), 0, 0) !important;
-    }
-
-    html[lang="ar"] .cinematic-title-one {
-      left: 2.5rem !important;
-      transform: translate3d(0, calc(var(--bio-progress, 0) * -16vh), 0) !important;
-    }
-
+    /* Arabic → left, English → right on scroll */
     html[lang="en"] .cinematic-copy {
-      transform: translate3d(calc(var(--bio-progress, 0) * 22vw), 0, 0) !important;
+      top: 52% !important;
+      left: 2.5rem !important;
+      transform: translate3d(calc(var(--bio-progress, 0) * 28vw), 0, 0) !important;
     }
 
     html[lang="ar"] .cinematic-copy {
-      transform: translate3d(calc(var(--bio-progress, 0) * -36vw), 0, 0) !important;
+      top: 54% !important;
+      left: auto !important;
+      right: 1.25rem !important;
+      transform: translate3d(calc(var(--bio-progress, 0) * -28vw), 0, 0) !important;
+    }
+
+    html[lang="en"] .cinematic-copy-a[data-i18n-html="hero.leadName"] {
+      font-size: clamp(3.3rem, 12.4vw, 4.7rem) !important;
+    }
+
+    html[lang="ar"] .cinematic-copy-a[data-i18n-html="hero.leadName"] {
+      font-size: clamp(3.7rem, 14vw, 5.5rem) !important;
     }
   }
 
   @media (min-width: 810px) {
-    .cinematic-title-one {
+    html[lang="en"] .cinematic-copy {
+      left: 7.5rem !important;
       top: 58% !important;
-      left: 6.75rem !important;
     }
 
-    html[lang="ar"] .cinematic-title-one {
-      left: 4.25rem !important;
+    html[lang="ar"] .cinematic-copy {
+      left: auto !important;
+      right: 3.5rem !important;
+      top: 58% !important;
     }
   }
 </style>
@@ -1337,14 +1363,19 @@
     text-transform: none;
   }
 
-  /* Stacked bar pulse preloader */
+  /* Stacked bar pulse preloader — same atmospheric bg as mobile menu */
   .site-preloader {
     position: fixed;
     inset: 0;
     z-index: 200;
     display: grid;
     place-items: center;
-    background: #050609;
+    background:
+      radial-gradient(ellipse 90% 55% at 50% -10%, rgba(110, 181, 232, 0.14), transparent 58%),
+      radial-gradient(ellipse 70% 50% at 80% 100%, rgba(110, 181, 232, 0.06), transparent 55%),
+      rgba(5, 6, 9, 0.92);
+    backdrop-filter: blur(18px) saturate(1.2);
+    -webkit-backdrop-filter: blur(18px) saturate(1.2);
     transition: opacity 0.55s ease, visibility 0.55s ease;
   }
 
@@ -2338,14 +2369,10 @@
         <img src="assets/doctor/hero.jpg" alt="Dr. Abdulfattah Ziad Al-shukargy" class="absolute inset-0 h-full w-full object-cover object-center cinematic-camera">
         <div class="absolute inset-0 bg-black/10" aria-hidden="true"></div>
 
-        <div class="absolute left-5 top-24 z-10 max-w-[22rem] md:left-6 md:top-[38%] cinematic-copy">
-          <p class="cinematic-copy-a ar-lead ar-w700 text-[clamp(1.75rem,4.75vw,4.5rem)] font-semibold uppercase leading-[0.92] tracking-[-0.07em]" data-i18n-html="hero.leadName">
+        <div class="absolute z-10 cinematic-copy">
+          <p class="cinematic-copy-a ar-lead ar-w700 text-[clamp(1.75rem,4.75vw,4.5rem)] font-semibold leading-[0.92] tracking-[-0.07em]" data-i18n-html="hero.leadName">
             <span class="hero-name-title">الـدكـتـور</span><span class="hero-name-person">عبدالفتاح الشكرچي</span>
           </p>
-        </div>
-
-        <div class="hero-role absolute z-10 ar-lead ar-w700 font-semibold uppercase tracking-[-0.07em] text-white cinematic-title-one">
-          <span class="hero-t1-label block" data-i18n-html="hero.t1">طبيب أسنان<br><span class="hero-t1-and">و</span><br>فني صناعة أسنان</span>
         </div>
 
         <div class="pointer-events-none absolute inset-0 z-[8] bg-[radial-gradient(circle_at_50%_44%,transparent_32%,rgba(0,0,0,.16)_68%,rgba(0,0,0,.55)_118%)]" aria-hidden="true"></div>
@@ -2942,7 +2969,7 @@
         const isMobileMotion = window.matchMedia('(max-width: 809px), (pointer: coarse)').matches;
         const watermarkEls = Array.from(document.querySelectorAll('.bg-watermark'));
         const parallaxEls = Array.from(document.querySelectorAll('.parallax-bg, .parallax-fg'));
-        const wmMaxShift = isMobileMotion ? 28 : 52;
+        const wmMaxShift = isMobileMotion ? 6 : 52;
 
         const updateScroll = () => {
           const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
@@ -3240,6 +3267,7 @@
       .hero-bio-p{margin:0;font-family:"Inter",Helvetica,Arial,sans-serif;font-size:clamp(0.95rem,2.1vw,1.2rem);font-weight:400;line-height:1.65;letter-spacing:-0.01em;color:#050609}
       html[lang="ar"] .hero-bio-p{font-family:"Almarai","Noto Sans Arabic","Inter",sans-serif;font-weight:300;line-height:1.75}
       @media(max-width:809px){.cinematic-scroll-stage{height:220svh}.hero-bio-sheet-inner{gap:1.1rem}.hero-bio-p{font-size:clamp(0.9rem,3.8vw,1.05rem);line-height:1.6}}
+      @media(prefers-reduced-motion:reduce){.cinematic-scroll-stage{height:auto}.cinematic-pin{position:relative;height:auto}.cinematic-hero{position:relative!important;inset:auto;--bio-progress:0;filter:none;transform:none}.cinematic-title-one,.cinematic-copy,.cinematic-copy-a{opacity:1!important;transform:none!important}.hero-t1-label{opacity:1!important}.hero-bio-sheet{position:relative;transform:none;pointer-events:auto;background:#fff;overflow:hidden}.hero-bio-sheet-fog{display:none}.hero-bio-sheet-inner{opacity:1!important;transform:none!important}}
       @media(prefers-reduced-motion:reduce){.cinematic-scroll-stage{height:auto}.cinematic-pin{position:relative;height:auto}.cinematic-hero{position:relative!important;inset:auto;--bio-progress:0;filter:none;transform:none}.cinematic-title-one,.cinematic-copy,.cinematic-copy-a{opacity:1!important;transform:none!important}.hero-t1-label{opacity:1!important}.hero-bio-sheet{position:relative;transform:none;pointer-events:auto;background:#fff;overflow:hidden}.hero-bio-sheet-fog{display:none}.hero-bio-sheet-inner{opacity:1!important;transform:none!important}}
     </style>
     <script>
