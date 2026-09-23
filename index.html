@@ -27,26 +27,14 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 <style id="i18n-arabic-styles">
-  /* Soft page sideways lock — never put overflow on .cinematic-scroll-stage (breaks sticky) */
-  html {
+  /* Soft page sideways lock — do not touch cinematic sticky/overflow */
+  html, body {
     max-width: 100%;
-    overflow-x: hidden;
     overscroll-behavior-x: none;
   }
 
   body {
-    max-width: 100%;
-    width: 100%;
     overflow-x: hidden;
-    overscroll-behavior-x: none;
-    position: relative;
-  }
-
-  @media (max-width: 809px) {
-    body {
-      /* Phones: allow vertical pan only — gestures won't drag the page sideways */
-      touch-action: pan-y;
-    }
   }
 
   /* Almarai thin (300) for all Arabic text; LTR layout matches English */
