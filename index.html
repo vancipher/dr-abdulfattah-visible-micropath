@@ -2969,7 +2969,7 @@
         const isMobileMotion = window.matchMedia('(max-width: 809px), (pointer: coarse)').matches;
         const watermarkEls = Array.from(document.querySelectorAll('.bg-watermark'));
         const parallaxEls = Array.from(document.querySelectorAll('.parallax-bg, .parallax-fg'));
-        const wmMaxShift = isMobileMotion ? 6 : 52;
+        const wmMaxShift = isMobileMotion ? 28 : 52;
 
         const updateScroll = () => {
           const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
