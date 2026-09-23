@@ -703,59 +703,78 @@
     height: 100% !important;
     max-width: none !important;
     object-fit: cover !important;
-    /* Crop empty studio space above the head; keep face under the watermark */
-    object-position: center 28% !important;
-    transform: scale(1.1);
-    transform-origin: center 12%;
+    object-position: center 24% !important;
+    transform: scale(1.06);
+    transform-origin: center 14%;
   }
 
   .doctor-section-veil {
     background:
       linear-gradient(
         to bottom,
-        rgba(5, 6, 9, 0.28) 0%,
-        rgba(5, 6, 9, 0.18) 28%,
-        rgba(5, 6, 9, 0.45) 52%,
+        rgba(5, 6, 9, 0.22) 0%,
+        rgba(5, 6, 9, 0.12) 30%,
+        rgba(5, 6, 9, 0.42) 52%,
         rgba(5, 6, 9, 0.78) 72%,
-        rgba(5, 6, 9, 0.92) 100%
+        rgba(5, 6, 9, 0.94) 100%
       );
   }
 
   @media (min-width: 810px) {
     .doctor-section-bg {
-      object-position: center 20% !important;
-      transform: scale(1.04);
-      transform-origin: center 10%;
+      object-position: center 18% !important;
+      transform: scale(1.02);
+      transform-origin: center 12%;
+    }
+
+    .intro-bio {
+      max-width: 48rem;
+      padding-bottom: 1rem;
+    }
+
+    .intro-bio-creds {
+      gap: 2.5rem 5rem;
+      padding-top: 2rem;
+    }
+
+    .cred-seal {
+      min-width: 11rem;
+      max-width: 16rem;
     }
   }
 
   @media (min-width: 1200px) {
     .doctor-section {
-      /* Exact studio fill sampled from portrait-seated.jpg edges */
-      background: #d4c8b8;
+      min-height: 100svh;
+      background: #050609;
     }
 
     .doctor-section-bg {
-      object-fit: contain !important;
-      object-position: center center !important;
+      object-fit: cover !important;
+      object-position: center 16% !important;
       transform: none;
-      background-color: #d4c8b8;
+      background-color: transparent;
     }
 
     .doctor-section-veil {
-      /* Keep sides matching photo; darken only lower band for text */
       background: linear-gradient(
         to bottom,
-        transparent 0%,
-        transparent 40%,
-        rgba(5, 6, 9, 0.22) 55%,
-        rgba(5, 6, 9, 0.7) 76%,
-        rgba(5, 6, 9, 0.9) 100%
+        rgba(5, 6, 9, 0.18) 0%,
+        rgba(5, 6, 9, 0.08) 35%,
+        rgba(5, 6, 9, 0.45) 58%,
+        rgba(5, 6, 9, 0.82) 78%,
+        rgba(5, 6, 9, 0.95) 100%
       );
     }
 
     .doctor-section .bg-watermark {
-      color: rgba(5, 6, 9, 0.08) !important;
+      color: rgba(255, 255, 255, 0.06) !important;
+      left: 2vw !important;
+      font-size: clamp(8rem, 18vw, 22rem) !important;
+    }
+
+    .intro-bio-name {
+      font-size: clamp(1.75rem, 2.4vw, 2.75rem) !important;
     }
   }
 
@@ -1001,29 +1020,36 @@
   }
 
   @media (min-width: 900px) {
+    .courses-shell {
+      max-width: 80rem;
+    }
+
+    .courses-program {
+      gap: 3.5rem;
+    }
+
     .courses-visual img {
       aspect-ratio: 4 / 5;
-      max-height: min(72vh, 44rem);
+      max-height: min(68vh, 40rem);
       width: 100%;
       margin-inline: auto;
-      object-fit: contain;
-      object-position: center top;
+      object-fit: cover;
+      object-position: 50% 22%;
     }
 
     .courses-visual-caption {
-      color: rgba(5, 6, 9, 0.55);
-      background: linear-gradient(to top, rgba(194, 188, 172, 0.95), transparent);
+      color: rgba(255, 255, 255, 0.78);
+      background: linear-gradient(to top, rgba(5, 6, 9, 0.75), transparent);
     }
   }
 
   @media (min-width: 1200px) {
     .courses-visual img {
-      aspect-ratio: auto;
-      height: min(78vh, 48rem);
-      max-height: none;
-      width: 100%;
-      object-fit: contain;
-      object-position: center center;
+      aspect-ratio: 3 / 4;
+      height: auto;
+      max-height: min(74vh, 44rem);
+      object-fit: cover;
+      object-position: 50% 20%;
     }
   }
 
@@ -1737,6 +1763,125 @@
   }
 
   /* Dual disciplines — slide panels (Visible / Micropath) */
+  .disciplines-head {
+    margin: 0 auto;
+    max-width: 72rem;
+    padding: 0 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .disciplines-head {
+      padding: 0 1.5rem;
+    }
+  }
+
+  .disciplines-blocks {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .discipline-block {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .discipline-intro {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 72rem;
+    padding: 0 1.25rem 2.5rem;
+  }
+
+  .discipline-block + .discipline-block .discipline-intro {
+    padding-top: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .discipline-intro {
+      padding: 0 1.5rem 3.5rem;
+    }
+
+    .discipline-block + .discipline-block .discipline-intro {
+      padding-top: 4rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .disciplines-head {
+      max-width: 80rem;
+    }
+
+    .disciplines-head h2 {
+      max-width: 28ch;
+    }
+
+    .disciplines-blocks {
+      margin-top: 4rem;
+      gap: 1.5rem;
+    }
+
+    .discipline-intro {
+      max-width: 80rem;
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 2rem 4rem;
+      align-items: end;
+      padding-bottom: 2.75rem;
+    }
+
+    .discipline-intro h3 {
+      margin: 0;
+      max-width: 14ch;
+    }
+
+    .discipline-intro-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .discipline-intro-copy p {
+      margin: 0;
+      max-width: 38rem;
+    }
+
+    .discipline-feature-inner {
+      max-width: 80rem !important;
+      margin-inline: auto;
+    }
+
+    .cases-feature-img {
+      max-width: 28rem;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: center top;
+      background: transparent;
+    }
+
+    .cases-feature-img--contain {
+      max-width: min(100%, 40rem);
+      aspect-ratio: auto;
+      object-fit: contain;
+      background: #050609;
+    }
+
+    .visible-services-grid {
+      max-width: 56rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .discipline-trigger--hero {
+      min-height: 22rem;
+    }
+
+    .cases-feature-img {
+      max-width: 32rem;
+    }
+  }
+
   .discipline-slide {
     display: grid;
     grid-template-rows: 0fr;
@@ -2266,27 +2411,29 @@
 
       <!-- OWNER / DISCIPLINES -->
       <section id="disciplines" class="bg-[#F2F3F5] pt-24 pb-10 text-[#050609] md:pt-36 md:pb-14">
-        <div class="reveal mx-auto max-w-[72rem] px-5 md:px-6">
+        <header class="disciplines-head reveal">
           <p class="font-['IBM_Plex_Mono',monospace] text-[10px] uppercase tracking-[0.18em] text-black/40" data-i18n="disciplines.kicker">
             Ownership
           </p>
-          <h2 class="ar-lead ar-w300 mt-4 max-w-3xl text-[clamp(1.5rem,4vw,3rem)] font-light leading-[1.15] tracking-[-0.03em] text-[#050609]" data-i18n="disciplines.title">
+          <h2 class="ar-lead ar-w300 mt-4 text-[clamp(1.5rem,4vw,3rem)] font-light leading-[1.15] tracking-[-0.03em] text-[#050609]" data-i18n="disciplines.title">
             Owner of Visible Clinic and Micropath Lab
           </h2>
-        </div>
+        </header>
 
-          <div class="mt-12 grid gap-0">
-            <!-- Visible intro + Clinic -->
-            <div class="discipline-intro reveal reveal-d1 mx-auto w-full max-w-[72rem] px-5 pb-10 md:px-6 md:pb-14">
+        <div class="disciplines-blocks">
+          <div class="discipline-block">
+            <div class="discipline-intro reveal reveal-d1">
               <h3 class="ar-lead ar-w300 text-[clamp(1.35rem,3.4vw,2.25rem)] font-light leading-[1.15] tracking-[-0.03em] text-[#050609]" data-i18n="disciplines.visible.introTitle">
                 Visible Dental Clinic
               </h3>
-              <p class="mt-5 max-w-3xl text-[clamp(0.95rem,2vw,1.1rem)] font-light leading-[1.65] text-[#050609]/75" data-i18n="disciplines.visible.introP1">
-                I am the owner and founder of Visible Dental Clinic, a dental practice focused on modern restorative and aesthetic dentistry.
-              </p>
-              <p class="mt-4 max-w-3xl text-[clamp(0.95rem,2vw,1.1rem)] font-light leading-[1.65] text-[#050609]/75" data-i18n="disciplines.visible.introP2">
-                Our approach is based on combining clinical knowledge, digital planning, and close collaboration with the dental laboratory to achieve functional, predictable, and highly aesthetic results.
-              </p>
+              <div class="discipline-intro-copy">
+                <p class="mt-5 text-[clamp(0.95rem,2vw,1.1rem)] font-light leading-[1.65] text-[#050609]/75 lg:mt-0" data-i18n="disciplines.visible.introP1">
+                  I am the owner and founder of Visible Dental Clinic, a dental practice focused on modern restorative and aesthetic dentistry.
+                </p>
+                <p class="mt-4 text-[clamp(0.95rem,2vw,1.1rem)] font-light leading-[1.65] text-[#050609]/75 lg:mt-0" data-i18n="disciplines.visible.introP2">
+                  Our approach is based on combining clinical knowledge, digital planning, and close collaboration with the dental laboratory to achieve functional, predictable, and highly aesthetic results.
+                </p>
+              </div>
             </div>
 
             <article class="discipline-panel reveal" data-discipline="visible" style="--discipline: #6EB5E8;">
@@ -2310,7 +2457,7 @@
               <div id="visible-panel" class="discipline-slide" aria-hidden="true">
                 <div class="discipline-slide-inner">
                   <div id="visible-feature" class="bg-[#D9D9D9] px-5 py-16 text-[#050609] md:px-6 md:py-24">
-                    <div class="mx-auto max-w-[112.5rem]">
+                    <div class="discipline-feature-inner mx-auto max-w-[72rem]">
                       <div class="panel-reveal">
                         <h2 class="ar-w800 text-[clamp(2.75rem,7vw,6.5rem)] font-semibold uppercase leading-[0.82] tracking-[-0.08em]" data-i18n-html="disciplines.visible.casesTitle">
                           Cases
@@ -2415,18 +2562,21 @@
                 </div>
               </footer>
             </article>
+          </div>
 
-            <!-- Micropath intro + Lab -->
-            <div class="discipline-intro reveal mx-auto w-full max-w-[72rem] px-5 py-12 md:px-6 md:py-16">
+          <div class="discipline-block">
+            <div class="discipline-intro reveal">
               <h3 class="ar-lead ar-w300 text-[clamp(1.35rem,3.4vw,2.25rem)] font-light leading-[1.15] tracking-[-0.03em] text-[#050609]" data-i18n="disciplines.micropath.introTitle">
                 Micropath Dental Laboratory
               </h3>
-              <p class="mt-5 max-w-3xl text-[clamp(0.95rem,2vw,1.1rem)] font-light leading-[1.65] text-[#050609]/75" data-i18n="disciplines.micropath.introP1">
-                I am the owner and founder of Micropath Dental Laboratory, a specialized dental laboratory focused on high-quality prosthetic and aesthetic restorations.
-              </p>
-              <p class="mt-4 max-w-3xl text-[clamp(0.95rem,2vw,1.1rem)] font-light leading-[1.65] text-[#050609]/75" data-i18n="disciplines.micropath.introP2">
-                Our work focuses particularly on fixed prosthodontics, including veneers, crowns, smile rehabilitation, full-arch restorations, and feldspathic restorations, with an emphasis on meticulous details, natural aesthetics, and accurate clinical-laboratory communication.
-              </p>
+              <div class="discipline-intro-copy">
+                <p class="mt-5 text-[clamp(0.95rem,2vw,1.1rem)] font-light leading-[1.65] text-[#050609]/75 lg:mt-0" data-i18n="disciplines.micropath.introP1">
+                  I am the owner and founder of Micropath Dental Laboratory, a specialized dental laboratory focused on high-quality prosthetic and aesthetic restorations.
+                </p>
+                <p class="mt-4 text-[clamp(0.95rem,2vw,1.1rem)] font-light leading-[1.65] text-[#050609]/75 lg:mt-0" data-i18n="disciplines.micropath.introP2">
+                  Our work focuses particularly on fixed prosthodontics, including veneers, crowns, smile rehabilitation, full-arch restorations, and feldspathic restorations, with an emphasis on meticulous details, natural aesthetics, and accurate clinical-laboratory communication.
+                </p>
+              </div>
             </div>
 
             <article class="discipline-panel reveal" data-discipline="micropath" style="--discipline: #E8C49A;">
@@ -2449,7 +2599,7 @@
               <div id="micropath-panel" class="discipline-slide" aria-hidden="true">
                 <div class="discipline-slide-inner">
                   <div id="micropath-feature" class="bg-[#EDE6DC] px-5 py-16 text-[#050609] md:px-6 md:py-24">
-                    <div class="mx-auto max-w-[112.5rem]">
+                    <div class="discipline-feature-inner mx-auto max-w-[72rem]">
                       <div class="panel-reveal">
                         <h2 class="ar-w800 text-[clamp(2.75rem,7vw,6.5rem)] font-semibold uppercase leading-[0.82] tracking-[-0.08em]" data-i18n-html="disciplines.micropath.casesTitle">
                           Cases
@@ -2559,6 +2709,7 @@
               </footer>
             </article>
           </div>
+        </div>
       </section>
 
       <!-- CERAMIST COURSES -->
