@@ -42,7 +42,7 @@
       "intro.bioName": "Dr. Abdulfattah Ziad Al-shukargy",
       "intro.bioRole": "Practicing dentist & dental technician",
       "intro.bioDegree1": "BDS",
-      "intro.bioDegree1Years": "8 yrs",
+      "intro.bioDegree1Years": "6 yrs",
       "intro.bioDegree1Detail": "Bachelor of Oral & Dental Surgery",
       "intro.bioDegree2": "BDT",
       "intro.bioDegree2Years": "8 yrs",

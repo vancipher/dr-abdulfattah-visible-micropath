@@ -1891,6 +1891,11 @@
     .visible-services-grid {
       max-width: 56rem;
     }
+
+    .micropath-gallery,
+    .visible-gallery {
+      max-width: 56rem;
+    }
   }
 
   @media (min-width: 1280px) {
@@ -2157,6 +2162,41 @@
   .visible-services-grid .case-topic {
     min-height: 0;
     aspect-ratio: 1 / 1;
+  }
+
+  .micropath-gallery,
+  .visible-gallery {
+    max-width: 56rem;
+  }
+
+  .micropath-gallery-item,
+  .visible-gallery-item {
+    aspect-ratio: 1 / 1;
+  }
+
+  .micropath-gallery-img,
+  .visible-gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .micropath-gallery-item:hover .micropath-gallery-img,
+  .visible-gallery-item:hover .visible-gallery-img {
+    transform: scale(1.04);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .micropath-gallery-img,
+    .visible-gallery-img {
+      transition: none;
+    }
+    .micropath-gallery-item:hover .micropath-gallery-img,
+    .visible-gallery-item:hover .visible-gallery-img {
+      transform: none;
+    }
   }
 
   @media (max-width: 479px) {
@@ -2480,7 +2520,7 @@
             <div class="intro-bio-creds doctor-intro-item doctor-intro-item--d2 order-3 mt-8">
               <div class="cred-seal">
                 <span class="cred-seal-abbr" data-i18n="intro.bioDegree1">BDS</span>
-                <span class="cred-seal-years" data-i18n="intro.bioDegree1Years">8 yrs</span>
+                <span class="cred-seal-years" data-i18n="intro.bioDegree1Years">6 yrs</span>
                 <p class="cred-seal-caption" data-i18n="intro.bioDegree1Detail">
                   Bachelor of Oral &amp; Dental Surgery
                 </p>
@@ -2553,47 +2593,19 @@
                         </figure>
                       </div>
 
-                      <h3 class="panel-reveal reveal-d1 ar-w800 mt-12 text-[clamp(1.75rem,4.5vw,3.5rem)] font-semibold uppercase leading-[0.9] tracking-[-0.06em] text-[#050609]" data-i18n="disciplines.micropath.servicesLabel">
-                        Services
-                      </h3>
-
-                      <div class="panel-reveal reveal-d2 visible-services-grid mt-6 grid grid-cols-2 overflow-hidden rounded-sm">
-                        <article class="case-topic border-b border-e border-[#050609]/10">
-                          <img loading="lazy" src="assets/micropath/topic-crowns.png" alt="" class="case-topic-bg">
-                          <div class="case-topic-scrim" aria-hidden="true"></div>
-                          <div class="case-topic-content">
-                            <div>
-                              <h3 class="text-[clamp(0.95rem,3.5vw,1.25rem)] font-light text-white" data-i18n="disciplines.micropath.t1">Crowns</h3>
-                            </div>
-                          </div>
-                        </article>
-                        <article class="case-topic border-b border-[#050609]/10">
-                          <img loading="lazy" src="assets/micropath/topic-bridges.png" alt="" class="case-topic-bg">
-                          <div class="case-topic-scrim" aria-hidden="true"></div>
-                          <div class="case-topic-content">
-                            <div>
-                              <h3 class="text-[clamp(0.95rem,3.5vw,1.25rem)] font-light text-white" data-i18n="disciplines.micropath.t2">Bridges</h3>
-                            </div>
-                          </div>
-                        </article>
-                        <article class="case-topic border-e border-[#050609]/10">
-                          <img loading="lazy" src="assets/micropath/topic-veneers.png" alt="" class="case-topic-bg">
-                          <div class="case-topic-scrim" aria-hidden="true"></div>
-                          <div class="case-topic-content">
-                            <div>
-                              <h3 class="text-[clamp(0.95rem,3.5vw,1.25rem)] font-light text-white" data-i18n="disciplines.micropath.t3">Veneers</h3>
-                            </div>
-                          </div>
-                        </article>
-                        <article class="case-topic">
-                          <img loading="lazy" src="assets/micropath/topic-fullarch.png" alt="" class="case-topic-bg">
-                          <div class="case-topic-scrim" aria-hidden="true"></div>
-                          <div class="case-topic-content">
-                            <div>
-                              <h3 class="text-[clamp(0.95rem,3.5vw,1.25rem)] font-light text-white" data-i18n="disciplines.micropath.t4">Full-arch</h3>
-                            </div>
-                          </div>
-                        </article>
+                      <div class="panel-reveal reveal-d1 micropath-gallery mt-12 grid grid-cols-2 gap-2 overflow-hidden sm:gap-3">
+                        <figure class="micropath-gallery-item overflow-hidden bg-[#050609]">
+                          <img loading="lazy" src="assets/micropath/gallery-01.jpg" alt="Micropath Lab crown and implant abutment work" class="micropath-gallery-img">
+                        </figure>
+                        <figure class="micropath-gallery-item overflow-hidden bg-[#050609]">
+                          <img loading="lazy" src="assets/micropath/gallery-02.jpg" alt="Micropath Lab restorative detail on dental model" class="micropath-gallery-img">
+                        </figure>
+                        <figure class="micropath-gallery-item overflow-hidden bg-[#050609]">
+                          <img loading="lazy" src="assets/micropath/gallery-03.jpg" alt="Micropath Lab aesthetic veneer set" class="micropath-gallery-img">
+                        </figure>
+                        <figure class="micropath-gallery-item overflow-hidden bg-[#050609]">
+                          <img loading="lazy" src="assets/micropath/gallery-04.jpg" alt="Micropath Lab feldspathic veneers" class="micropath-gallery-img">
+                        </figure>
                       </div>
                     </div>
                   </div>
@@ -2671,56 +2683,19 @@
                 <div class="discipline-slide-inner">
                   <div id="visible-feature" class="bg-[#D9D9D9] px-5 py-16 text-[#050609] md:px-6 md:py-24">
                     <div class="discipline-feature-inner mx-auto max-w-[72rem]">
-                      <div class="panel-reveal">
-                        <h2 class="ar-w800 text-[clamp(2.75rem,7vw,6.5rem)] font-semibold uppercase leading-[0.82] tracking-[-0.08em]" data-i18n-html="disciplines.visible.casesTitle">
-                          Cases
-                        </h2>
-                        <figure class="mt-8 overflow-hidden">
-                          <img loading="lazy" src="assets/visible/cases-feature.jpg" alt="" class="cases-feature-img">
+                      <div class="panel-reveal visible-gallery grid grid-cols-2 gap-2 overflow-hidden sm:gap-3">
+                        <figure class="visible-gallery-item overflow-hidden bg-[#050609]">
+                          <img loading="lazy" src="assets/visible/gallery-01.jpg" alt="Visible Clinic before and after smile transformation" class="visible-gallery-img">
                         </figure>
-                      </div>
-
-                      <h3 class="panel-reveal reveal-d1 ar-w800 mt-12 text-[clamp(1.75rem,4.5vw,3.5rem)] font-semibold uppercase leading-[0.9] tracking-[-0.06em] text-[#050609]" data-i18n="disciplines.visible.servicesLabel">
-                        Services
-                      </h3>
-
-                      <div class="panel-reveal reveal-d2 visible-services-grid mt-6 grid grid-cols-2 overflow-hidden rounded-sm">
-                        <article class="case-topic border-b border-e border-[#050609]/10">
-                          <img loading="lazy" src="assets/visible/topic-ortho.png" alt="" class="case-topic-bg">
-                          <div class="case-topic-scrim" aria-hidden="true"></div>
-                          <div class="case-topic-content">
-                            <div>
-                              <h3 class="text-[clamp(0.95rem,3.5vw,1.25rem)] font-light text-white" data-i18n="disciplines.visible.t1">Orthodontics</h3>
-                            </div>
-                          </div>
-                        </article>
-                        <article class="case-topic border-b border-[#050609]/10">
-                          <img loading="lazy" src="assets/visible/topic-implants.png" alt="" class="case-topic-bg">
-                          <div class="case-topic-scrim" aria-hidden="true"></div>
-                          <div class="case-topic-content">
-                            <div>
-                              <h3 class="text-[clamp(0.95rem,3.5vw,1.25rem)] font-light text-white" data-i18n="disciplines.visible.t2">Implants</h3>
-                            </div>
-                          </div>
-                        </article>
-                        <article class="case-topic border-e border-[#050609]/10">
-                          <img loading="lazy" src="assets/visible/topic-veneers.png" alt="" class="case-topic-bg">
-                          <div class="case-topic-scrim" aria-hidden="true"></div>
-                          <div class="case-topic-content">
-                            <div>
-                              <h3 class="text-[clamp(0.95rem,3.5vw,1.25rem)] font-light text-white" data-i18n="disciplines.visible.t3">Veneer placement</h3>
-                            </div>
-                          </div>
-                        </article>
-                        <article class="case-topic">
-                          <img loading="lazy" src="assets/visible/topic-fillings.png" alt="" class="case-topic-bg">
-                          <div class="case-topic-scrim" aria-hidden="true"></div>
-                          <div class="case-topic-content">
-                            <div>
-                              <h3 class="text-[clamp(0.95rem,3.5vw,1.25rem)] font-light text-white" data-i18n="disciplines.visible.t4">Dental fillings</h3>
-                            </div>
-                          </div>
-                        </article>
+                        <figure class="visible-gallery-item overflow-hidden bg-[#050609]">
+                          <img loading="lazy" src="assets/visible/gallery-02.jpg" alt="Visible Clinic before and after veneer case" class="visible-gallery-img">
+                        </figure>
+                        <figure class="visible-gallery-item overflow-hidden bg-[#050609]">
+                          <img loading="lazy" src="assets/visible/gallery-03.jpg" alt="Visible Clinic smile makeover before and after" class="visible-gallery-img">
+                        </figure>
+                        <figure class="visible-gallery-item overflow-hidden bg-[#050609]">
+                          <img loading="lazy" src="assets/visible/gallery-04.jpg" alt="Visible Clinic restorative before and after" class="visible-gallery-img">
+                        </figure>
                       </div>
                     </div>
                   </div>
@@ -2801,12 +2776,12 @@
               </a>
               <a
                 class="courses-social-link courses-social-phone"
-                href="tel:+9647711554411"
+                href="tel:+9647755005521"
                 dir="ltr"
-                aria-label="Call 0771 155 4411"
+                aria-label="Call 0775 500 5521"
               >
                 <iconify-icon icon="mdi:phone" width="18" height="18" aria-hidden="true"></iconify-icon>
-                <span>0771 155 4411</span>
+                <span>0775 500 5521</span>
               </a>
               <div class="courses-social-group">
                 <a
