@@ -25,7 +25,7 @@
         "I am Dr. Abdulfattah Al-Shukargy, a dentist and dental technician from Iraq. I hold Bachelor’s degrees in Dental Technology and Dentistry, with approximately eight years of experience in dental laboratory work.",
       "hero.bio.p2":
         "My professional focus is on prosthodontics, particularly fixed prosthodontic restorations and comprehensive aesthetic rehabilitation. My areas of interest and expertise include smile makeovers, veneers, crowns, Digital Smile Design (DSD), full-arch rehabilitation, and feldspathic restorations.",
-      "hero.bio.p3":
+      "hero.vision.p1":
         "My vision is to contribute to reshaping the way dentistry and dental technology are approached, through continuous scientific development, knowledge sharing, and the adoption of modern techniques and technologies. I aim to help advance the quality, precision, and predictability of dental treatment and laboratory work, while creating knowledge and practical value that can benefit the dental community as a whole.",
       "hero.sub": "Dr. Al-Shukerchy<br>Dentist × Dental Technician",
       "hero.i1": "Consult / Diagnose",
@@ -113,34 +113,16 @@
       "micropathLab.ig": "Watch our work on Instagram",
       "micropathLab.openHint": "Open to see more of the lab services",
       "courses.kicker": "Courses",
-      "courses.title": "Ceramist<br>courses",
+      "courses.title": "Private Courses",
       "courses.lead":
-        "Hands-on ceramic training for dentists and dental technicians — focused on morphology, layering, translucency, and finishing that holds under close looking.",
-      "courses.whatsapp": "Book on WhatsApp",
-      "courses.whatsappAria": "Book a ceramist course on WhatsApp",
-      "courses.whatsappMsg": "Hello, I would like to book a ceramist course.",
-      "courses.metaAudienceLabel": "Audience",
-      "courses.metaAudience": "Dentists & technicians",
-      "courses.metaFormatLabel": "Format",
-      "courses.metaFormat": "Hands-on studio",
-      "courses.metaFocusLabel": "Focus",
-      "courses.metaFocus": "Ceramic craft",
-      "courses.modulesLabel": "Program modules",
-      "courses.moduleTag": "Module",
-      "courses.visualCaption": "Course instructor",
-      "courses.instructorLabel": "Instructor",
-      "courses.instructorName": "Dr. Abdulfattah Al-Shukargy",
-      "courses.c1.title": "Feldspathic ceramics",
-      "courses.c1.body":
-        "Build natural enamel effects with controlled layering — edge light, chroma, and life-like translucency.",
-      "courses.c2.title": "Morphology & form",
-      "courses.c2.body":
-        "Shape anatomy that functions and photographs cleanly — contacts, emergence, and surface texture.",
-      "courses.c3.title": "Finishing & glaze",
-      "courses.c3.body":
-        "Refine margins, polish strategy, and glaze control so restorations stay precise after seating.",
-      "courses.note":
-        "Courses are led by Dr. Abdulfattah Al-Shukargy — dentist, dental technician, and ceramist — with practice-based demos and case discussion.",
+        "Hands-on ceramic training for dentists and dental technicians.",
+      "courses.whatsapp": "Booking Course",
+      "courses.whatsappAria": "Book a private course on WhatsApp",
+      "courses.whatsappMsg": "Hello, I would like to book a private course.",
+      "courses.facebook": "Facebook",
+      "courses.facebookAria": "Private courses on Facebook",
+      "courses.instagram": "Instagram",
+      "courses.instagramAria": "Private courses on Instagram",
       "intro.p3": "It isn’t just a clinic.",
       "intro.p4":
         "It’s where clinical care and laboratory craft meet. <span class=\"text-[#6EB5E8]\">A living archive</span> of restorations, ceramics, and results built with precision.",
@@ -292,8 +274,8 @@
         "أنا الدكتور عبدالفتاح الشكرچي، طبيب أسنان وفني صناعة أسنان من العراق. أحمل شهادتي البكالوريوس في تقنية الأسنان وطب الأسنان، ولدي حوالي ثماني سنوات من الخبرة في عمل مختبرات الأسنان.",
       "hero.bio.p2":
         "يتركز اهتمامي المهني على طب الأسنان التعويضي، ولا سيما الترميمات التعويضية الثابتة وإعادة التأهيل الجمالي الشامل. تشمل مجالات اهتمامي وخبرتي تجميل الابتسامة، والقشور، والتيجان، وتصميم الابتسامة الرقمي (DSD)، وإعادة تأهيل القوس الكامل، وترميمات الفلسبار.",
-      "hero.bio.p3":
-        "رؤيتي المساهمة في إعادة تشكيل طريقة التعامل مع طب الأسنان وتقنية الأسنان، من خلال التطوير العلمي المستمر، ومشاركة المعرفة، وتبني التقنيات والأساليب الحديثة. أسعى للمساعدة في الارتقاء بجودة ودقة وقابلية توقع العلاج السني وعمل المختبر، مع خلق معرفة وقيمة عملية تفيد مجتمع طب الأسنان ككل.",
+      "hero.vision.p1":
+        "رؤيتي هي المساهمة في إعادة تشكيل طريقة التعامل مع طب الأسنان وتقنيات الأسنان، من خلال التطوير العلمي المستمر، وتبادل المعرفة، وتبنّي التقنيات والأساليب الحديثة. أسعى إلى المساعدة في الارتقاء بجودة العلاج وعمل المختبر ودقتهما وقابليتهما للتنبؤ، مع خلق معرفة وقيمة عملية تفيد مجتمع طب الأسنان ككل.",
       "hero.sub": "د. الشكرچي<br>طبيب أسنان × فني أسنان",
       "hero.i1": "استشارة / تشخيص",
       "hero.i2": "تخطيط",
@@ -380,34 +362,16 @@
       "micropathLab.ig": "شاهد أعمالنا على إنستغرام",
       "micropathLab.openHint": "افتح لرؤية المزيد من خدمات المختبر",
       "courses.kicker": "دورات",
-      "courses.title": "دورات<br>الخزف",
+      "courses.title": "دورات خاصة",
       "courses.lead":
-        "تدريب عملي على الخزف لأطباء الأسنان وفنيي صناعة الأسنان — يركز على التشكل والطبقات والشفافية والإنهاء الذي يصمد تحت النظر القريب.",
-      "courses.whatsapp": "احجز عبر واتساب",
-      "courses.whatsappAria": "احجز دورة خزف عبر واتساب",
-      "courses.whatsappMsg": "مرحباً، أرغب بحجز دورة خزف",
-      "courses.metaAudienceLabel": "الجمهور",
-      "courses.metaAudience": "أطباء وفنيون",
-      "courses.metaFormatLabel": "الصيغة",
-      "courses.metaFormat": "تدريب عملي",
-      "courses.metaFocusLabel": "التركيز",
-      "courses.metaFocus": "حرفة الخزف",
-      "courses.modulesLabel": "وحدات البرنامج",
-      "courses.moduleTag": "وحدة",
-      "courses.visualCaption": "مدرّب الدورة",
-      "courses.instructorLabel": "المدرّب",
-      "courses.instructorName": "د. عبدالفتاح الشكرچي",
-      "courses.c1.title": "خزف الفلسبار",
-      "courses.c1.body":
-        "بناء تأثيرات الميناء الطبيعية بطبقات مضبوطة — ضوء الحافة والصبغة والشفافية الحيوية.",
-      "courses.c2.title": "التشكل والشكل",
-      "courses.c2.body":
-        "تشكيل تشريح يعمل ويظهر بدقة — التماسات والبروز وملمس السطح.",
-      "courses.c3.title": "الإنهاء والتزجيج",
-      "courses.c3.body":
-        "تحسين الحواف واستراتيجية التلميع والتحكم بالتزجيج لتبقى الترميمات دقيقة بعد التركيب.",
-      "courses.note":
-        "يقدّم الدورات الدكتور عبدالفتاح الشكرچي — طبيب أسنان وفني صناعة أسنان وخزّاف — مع عروض عملية ونقاش حالات.",
+        "تدريب عملي على الخزف لأطباء الأسنان وفنيي صناعة الأسنان.",
+      "courses.whatsapp": "حجز دورة",
+      "courses.whatsappAria": "احجز دورة خاصة عبر واتساب",
+      "courses.whatsappMsg": "مرحباً، أرغب بحجز دورة خاصة",
+      "courses.facebook": "فيسبوك",
+      "courses.facebookAria": "الدورات الخاصة على فيسبوك",
+      "courses.instagram": "إنستغرام",
+      "courses.instagramAria": "الدورات الخاصة على إنستغرام",
       "intro.p3": "ليست عيادة فحسب.",
       "intro.p4":
         "هنا تلتقي الرعاية السريرية بحرفة المختبر. <span class=\"text-[#6EB5E8]\">أرشيف حيّ</span> للترميمات والخزف والنتائج المبنية بدقة.",
@@ -533,7 +497,7 @@
     },
   };
 
-  var currentLang = "ar";
+  var currentLang = "en";
 
   function applyLang(lang) {
     currentLang = lang;
@@ -588,7 +552,7 @@
     try {
       saved = localStorage.getItem("lang");
     } catch (e) {}
-    applyLang(saved === "ar" || saved === "en" ? saved : "ar");
+    applyLang(saved === "ar" || saved === "en" ? saved : "en");
 
     document.querySelectorAll(".lang-toggle").forEach(function (btn) {
       btn.addEventListener("click", function () {

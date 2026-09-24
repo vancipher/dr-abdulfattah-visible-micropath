@@ -1,17 +1,20 @@
-<html lang="ar" dir="ltr"><head>
+<html lang="en" dir="ltr"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#050609">
 <meta name="description" content="Dr. Abdulfattah Ziad Al-Shukerchy — Dentist × Dental Technician × Ceramist. Visible × Micropath.">
 <title>Dr. Al-Shukerchy — Visible × Micropath</title>
+<link rel="icon" href="/favicon.ico" sizes="any" type="image/x-icon">
+<link rel="icon" href="assets/brand/after-rain-mark.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.ico">
 <script>
   (function () {
     try {
       var lang = localStorage.getItem("lang");
-      if (lang === "en" || lang === "ar") {
-        document.documentElement.lang = lang;
-      }
-    } catch (e) {}
+      document.documentElement.lang = (lang === "en" || lang === "ar") ? lang : "en";
+    } catch (e) {
+      document.documentElement.lang = "en";
+    }
     document.documentElement.classList.add("i18n-pending");
   })();
 </script>
@@ -721,9 +724,9 @@
     height: 100% !important;
     max-width: none !important;
     object-fit: cover !important;
-    object-position: center 24% !important;
-    transform: scale(1.06);
-    transform-origin: center 14%;
+    object-position: center 30% !important;
+    transform: scale(1.04);
+    transform-origin: center center;
   }
 
   .doctor-section-veil {
@@ -738,11 +741,84 @@
       );
   }
 
+  /* Doctor section intro animation */
+  .doctor-intro .doctor-section-bg {
+    opacity: 0.55;
+    transform: scale(1.14);
+    filter: blur(6px);
+    transition:
+      opacity 1.25s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 1.45s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .doctor-intro.is-intro-in .doctor-section-bg {
+    opacity: 1;
+    transform: scale(1.04);
+    filter: blur(0);
+  }
+
+  .doctor-intro-mark {
+    opacity: 0 !important;
+    transform: translate3d(-1.5rem, 0.5rem, 0);
+    transition:
+      opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.12s,
+      transform 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.12s;
+  }
+
+  .doctor-intro.is-intro-in .doctor-intro-mark {
+    opacity: 0.05 !important;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .doctor-intro-item {
+    opacity: 0;
+    transform: translate3d(0, 1.75rem, 0);
+    transition:
+      opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: 0.18s;
+  }
+
+  .doctor-intro-item--d1 { transition-delay: 0.32s; }
+  .doctor-intro-item--d2 { transition-delay: 0.48s; }
+
+  .doctor-intro.is-intro-in .doctor-intro-item {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  @media (max-width: 809px) {
+    .doctor-intro .doctor-section-bg {
+      filter: none;
+      transform: scale(1.08);
+    }
+
+    .doctor-intro.is-intro-in .doctor-section-bg {
+      transform: scale(1.04);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .doctor-intro .doctor-section-bg,
+    .doctor-intro-mark,
+    .doctor-intro-item {
+      opacity: 1 !important;
+      transform: none !important;
+      filter: none !important;
+      transition: none !important;
+    }
+
+    .doctor-intro-mark {
+      opacity: 0.05 !important;
+    }
+  }
+
   @media (min-width: 810px) {
     .doctor-section-bg {
-      object-position: center 18% !important;
+      object-position: center 22% !important;
       transform: scale(1.02);
-      transform-origin: center 12%;
+      transform-origin: center center;
     }
 
     .intro-bio {
@@ -922,298 +998,128 @@
     text-transform: none;
   }
 
-  /* Courses — professional program layout */
+  /* Courses — private courses overlay */
   .courses-section {
     position: relative;
     overflow: hidden;
+    min-height: min(100svh, 52rem);
+    display: flex;
+    align-items: flex-end;
+    background: #050609;
+  }
+
+  .courses-section-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 28%;
+    pointer-events: none;
+  }
+
+  .courses-section-veil {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
     background:
-      radial-gradient(ellipse 80% 50% at 100% 0%, rgba(110, 181, 232, 0.08), transparent 55%),
-      #111318;
+      linear-gradient(
+        to top,
+        rgba(5, 6, 9, 0.92) 0%,
+        rgba(5, 6, 9, 0.55) 42%,
+        rgba(5, 6, 9, 0.2) 68%,
+        rgba(5, 6, 9, 0.35) 100%
+      );
   }
 
   .courses-shell {
+    position: relative;
+    z-index: 1;
+    width: 100%;
     margin: 0 auto;
     max-width: 72rem;
+    padding: clamp(5rem, 14vw, 8rem) 1.25rem clamp(2.5rem, 6vw, 4rem);
+  }
+
+  @media (min-width: 768px) {
+    .courses-shell {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
   }
 
   .courses-head {
-    max-width: 42rem;
+    max-width: 34rem;
   }
 
-  .courses-meta {
-    margin: 1.75rem 0 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.85rem 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  }
-
-  .courses-meta > div {
-    padding: 1rem 0;
-  }
-
-  .courses-meta dt {
+  .courses-kicker {
     margin: 0;
     font-family: "IBM Plex Mono", ui-monospace, monospace;
     font-size: 10px;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.38);
+    color: rgba(255, 255, 255, 0.45);
   }
 
-  .courses-meta dd {
-    margin: 0.45rem 0 0;
-    font-size: 0.92rem;
-    font-weight: 400;
-    line-height: 1.35;
-    color: rgba(255, 255, 255, 0.88);
+  .courses-title {
+    margin: 0.85rem 0 0;
+    font-size: clamp(2rem, 6vw, 3.75rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #fff;
   }
 
-  .courses-whatsapp {
+  .courses-lead {
+    margin: 1.1rem 0 0;
+    max-width: 28rem;
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    font-weight: 300;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .courses-social {
+    margin-top: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+
+  .courses-social-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .courses-social-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.55rem;
-    margin-top: 1.75rem;
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    background: transparent;
-    padding: 0.85rem 1.15rem;
+    gap: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    background: rgba(5, 6, 9, 0.35);
+    padding: 0.75rem 1rem;
     font-family: "IBM Plex Mono", ui-monospace, monospace;
     font-size: 11px;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: #fff;
     text-decoration: none;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
   }
 
-  .courses-whatsapp:hover,
-  .courses-whatsapp:focus-visible {
+  .courses-social-link:hover,
+  .courses-social-link:focus-visible {
     border-color: #6eb5e8;
     color: #6eb5e8;
     outline: none;
   }
 
-  .courses-whatsapp--solid {
-    margin-top: 0;
-    border-color: #6eb5e8;
-    background: #6eb5e8;
-    color: #050609;
-  }
-
-  .courses-whatsapp--solid:hover,
-  .courses-whatsapp--solid:focus-visible {
-    background: #8ec8f0;
-    border-color: #8ec8f0;
-    color: #050609;
-  }
-
-  .courses-program {
-    margin-top: 3.5rem;
-    display: grid;
-    gap: 2.25rem;
-  }
-
-  @media (min-width: 900px) {
-    .courses-program {
-      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
-      gap: 3.25rem;
-      align-items: start;
-    }
-  }
-
-  .courses-visual {
-    margin: 0;
-    position: relative;
-    overflow: hidden;
-    background: #0a0c10;
-  }
-
-  .courses-visual img {
-    display: block;
-    width: 100%;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
-    /* Skip empty studio headroom; keep head near top, reveal more torso */
-    object-position: 50% 28%;
-  }
-
-  @media (min-width: 900px) {
-    .courses-shell {
-      max-width: 80rem;
-    }
-
-    .courses-program {
-      gap: 3.5rem;
-    }
-
-    .courses-visual img {
-      aspect-ratio: 4 / 5;
-      max-height: min(68vh, 40rem);
-      width: 100%;
-      margin-inline: auto;
-      object-fit: cover;
-      object-position: 50% 22%;
-    }
-
-    .courses-visual-caption {
-      color: rgba(255, 255, 255, 0.78);
-      background: linear-gradient(to top, rgba(5, 6, 9, 0.75), transparent);
-    }
-  }
-
-  @media (min-width: 1200px) {
-    .courses-visual img {
-      aspect-ratio: 3 / 4;
-      height: auto;
-      max-height: min(74vh, 44rem);
-      object-fit: cover;
-      object-position: 50% 20%;
-    }
-  }
-
-  .courses-visual-caption {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 1.1rem 1.15rem;
-    background: linear-gradient(to top, rgba(5, 6, 9, 0.85), transparent);
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.72);
-  }
-
-  .courses-modules-label {
-    margin: 0 0 0.85rem;
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 10px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: rgba(110, 181, 232, 0.9);
-  }
-
-  .courses-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.14);
-  }
-
-  .courses-item {
-    padding: 1.35rem 0 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-  }
-
-  .courses-item-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-
-  .courses-item-index {
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 10px;
-    letter-spacing: 0.16em;
-    color: #6eb5e8;
-  }
-
-  .courses-item-tag {
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.4);
-  }
-
-  .courses-item h3 {
-    margin: 0.7rem 0 0;
-    font-size: clamp(1.2rem, 2.5vw, 1.65rem);
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    color: #fff;
-  }
-
-  .courses-item p {
-    margin: 0.55rem 0 0;
-    max-width: 36rem;
-    font-size: 0.95rem;
-    font-weight: 300;
-    line-height: 1.65;
-    color: rgba(255, 255, 255, 0.58);
-  }
-
-  .courses-enroll {
-    margin-top: 3rem;
-    padding: 1.5rem 0 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.14);
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  @media (min-width: 720px) {
-    .courses-enroll {
-      flex-direction: row;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 2rem;
-    }
-  }
-
-  .courses-enroll-label {
-    margin: 0;
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.38);
-  }
-
-  .courses-enroll-name {
-    margin: 0.4rem 0 0;
-    font-size: clamp(1.05rem, 2.2vw, 1.35rem);
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    color: #fff;
-  }
-
-  .courses-enroll-note {
-    margin: 0.55rem 0 0;
-    max-width: 34rem;
-    font-size: 0.9rem;
-    font-weight: 300;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.5);
-  }
-
-  @media (max-width: 640px) {
-    .courses-meta {
-      grid-template-columns: 1fr;
-      gap: 0;
-    }
-
-    .courses-meta > div {
-      padding: 0.85rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .courses-meta > div:last-child {
-      border-bottom: none;
-    }
-  }
-
-  html[lang="ar"] .courses-meta dt,
-  html[lang="ar"] .courses-modules-label,
-  html[lang="ar"] .courses-item-tag,
-  html[lang="ar"] .courses-item-index,
-  html[lang="ar"] .courses-visual-caption,
-  html[lang="ar"] .courses-enroll-label,
-  html[lang="ar"] .courses-whatsapp {
+  html[lang="ar"] .courses-kicker,
+  html[lang="ar"] .courses-social-link {
     font-family: "Almarai", "Noto Sans Arabic", sans-serif;
     letter-spacing: 0;
     text-transform: none;
@@ -1446,6 +1352,44 @@
   .reveal-d3 { --reveal-delay: 0.21s; }
   .reveal-d4 { --reveal-delay: 0.28s; }
 
+  /* Ownership + below: continuous scroll-linked fade / motion */
+  .scroll-motion {
+    --scroll-progress: 0;
+    opacity: calc(0.18 + var(--scroll-progress) * 0.82);
+    transform: translate3d(0, calc((1 - var(--scroll-progress)) * 2.25rem), 0) scale(calc(0.965 + var(--scroll-progress) * 0.035));
+    filter: blur(calc((1 - var(--scroll-progress)) * 5px));
+    will-change: opacity, transform, filter;
+    transition: none;
+  }
+
+  .scroll-motion .reveal {
+    opacity: calc(var(--scroll-progress) * 0.35);
+    transform: translate3d(0, calc((1 - var(--scroll-progress)) * 1.1rem), 0);
+    transition:
+      opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0s);
+    filter: blur(calc((1 - var(--scroll-progress)) * 3px));
+  }
+
+  .scroll-motion .reveal.is-in {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+
+  @media (max-width: 809px) {
+    .scroll-motion {
+      filter: none;
+      transform: translate3d(0, calc((1 - var(--scroll-progress)) * 1.35rem), 0);
+    }
+
+    .scroll-motion .reveal {
+      filter: none;
+    }
+  }
+
   @media (min-width: 810px) {
     .reveal {
       transform: translate3d(0, 2rem, 0);
@@ -1474,7 +1418,9 @@
 
   @media (prefers-reduced-motion: reduce) {
     .reveal,
-    .blur-reveal {
+    .blur-reveal,
+    .scroll-motion,
+    .scroll-motion .reveal {
       opacity: 1 !important;
       transform: none !important;
       filter: none !important;
@@ -1966,8 +1912,48 @@
     object-position: top center;
   }
 
+  .discipline-trigger-bg--logo {
+    object-fit: contain;
+    object-position: center 42%;
+    transform: scale(0.72);
+    padding: 1.5rem;
+    box-sizing: border-box;
+  }
+
+  .discipline-trigger--micropath .discipline-trigger-overlay {
+    background:
+      linear-gradient(
+        to top,
+        color-mix(in srgb, #050609 78%, transparent) 0%,
+        color-mix(in srgb, #050609 18%, transparent) 42%,
+        transparent 72%
+      );
+  }
+
+  .discipline-trigger--visible {
+    background: #6EB5E8;
+  }
+
+  .discipline-trigger--visible .discipline-trigger-bg--logo {
+    mix-blend-mode: screen;
+  }
+
+  .discipline-trigger--visible .discipline-trigger-overlay {
+    background:
+      linear-gradient(
+        to top,
+        color-mix(in srgb, #0a3a5c 72%, transparent) 0%,
+        color-mix(in srgb, #6EB5E8 25%, transparent) 45%,
+        transparent 70%
+      );
+  }
+
   .discipline-trigger--hero:hover .discipline-trigger-bg {
     transform: scale(1.05);
+  }
+
+  .discipline-trigger--hero:hover .discipline-trigger-bg--logo {
+    transform: scale(0.76);
   }
 
   @media (min-width: 900px) {
@@ -1975,8 +1961,16 @@
       transform: none;
     }
 
+    .discipline-trigger-bg--logo {
+      transform: scale(0.72);
+    }
+
     .discipline-trigger--hero:hover .discipline-trigger-bg {
       transform: scale(1.03);
+    }
+
+    .discipline-trigger--hero:hover .discipline-trigger-bg--logo {
+      transform: scale(0.76);
     }
   }
 
@@ -2282,12 +2276,14 @@
         </nav>
 
         <div class="flex items-center gap-1">
-          <button type="button" class="lang-toggle nav-chip outline-none focus-visible:ring-2 focus-visible:ring-[#6EB5E8]" aria-label="التبديل إلى الإنجليزية">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="9"/>
-              <path d="M3 12h18"/>
-              <path d="M12 3a14.5 14.5 0 0 1 0 18"/>
-              <path d="M12 3a14.5 14.5 0 0 0 0 18"/>
+          <button type="button" class="lang-toggle nav-chip outline-none focus-visible:ring-2 focus-visible:ring-[#6EB5E8]" aria-label="Switch to Arabic">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m5 8 6 6"/>
+              <path d="m4 14 6-6 2-3"/>
+              <path d="M2 5h12"/>
+              <path d="M7 2h1"/>
+              <path d="m22 22-5-10-5 10"/>
+              <path d="M14 18h6"/>
             </svg>
           </button>
 
@@ -2375,7 +2371,14 @@
 
       <!-- Hero bio sheet: slides in on scroll, blurs hero behind -->
       <section id="hero-bio" class="hero-bio-sheet" aria-label="About">
-        <div class="hero-bio-sheet-fog" aria-hidden="true"></div>
+        <div class="hero-bio-sheet-visual" aria-hidden="true">
+          <img
+            src="assets/doctor/portrait-seated.jpg"
+            alt=""
+            class="hero-bio-sheet-bg"
+          >
+          <div class="hero-bio-sheet-fog"></div>
+        </div>
         <div class="hero-bio-sheet-inner">
           <p class="hero-bio-p" data-i18n="hero.bio.p1">
             I am Dr. Abdulfattah Al-Shukargy, a dentist and dental technician from Iraq. I hold Bachelor’s degrees in Dental Technology and Dentistry, with approximately eight years of experience in dental laboratory work.
@@ -2383,34 +2386,48 @@
           <p class="hero-bio-p" data-i18n="hero.bio.p2">
             My professional focus is on prosthodontics, particularly fixed prosthodontic restorations and comprehensive aesthetic rehabilitation. My areas of interest and expertise include smile makeovers, veneers, crowns, Digital Smile Design (DSD), full-arch rehabilitation, and feldspathic restorations.
           </p>
-          <p class="hero-bio-p" data-i18n="hero.bio.p3">
+        </div>
+      </section>
+
+      <!-- Hero vision sheet: slides in after bio -->
+      <section id="hero-vision" class="hero-bio-sheet hero-vision-sheet" aria-label="Vision">
+        <div class="hero-bio-sheet-visual" aria-hidden="true">
+          <img
+            src="assets/doctor/courses-instructor.jpg"
+            alt=""
+            class="hero-bio-sheet-bg hero-vision-sheet-bg"
+          >
+          <div class="hero-bio-sheet-fog"></div>
+        </div>
+        <div class="hero-bio-sheet-inner hero-vision-sheet-inner">
+          <p class="hero-bio-p" data-i18n="hero.vision.p1">
             My vision is to contribute to reshaping the way dentistry and dental technology are approached, through continuous scientific development, knowledge sharing, and the adoption of modern techniques and technologies. I aim to help advance the quality, precision, and predictability of dental treatment and laboratory work, while creating knowledge and practical value that can benefit the dental community as a whole.
           </p>
         </div>
       </section>
 
       <!-- INTRO -->
-      <section id="doctor" class="doctor-section relative flex min-h-[100svh] overflow-hidden px-5 pb-16 pt-28 md:min-h-[110svh] md:px-6 md:pb-24 md:pt-36">
+      <section id="doctor" class="doctor-section doctor-intro relative flex min-h-[100svh] overflow-hidden px-5 pb-16 pt-28 md:min-h-[110svh] md:px-6 md:pb-24 md:pt-36">
         <img
-          src="assets/doctor/portrait-seated.jpg"
+          src="assets/visible/cases-feature.jpg"
           alt=""
           aria-hidden="true"
           class="doctor-section-bg pointer-events-none"
         >
         <div class="doctor-section-veil pointer-events-none absolute inset-0" aria-hidden="true"></div>
-        <div aria-hidden="true" class="bg-watermark pointer-events-none absolute -top-[0.25em] left-[-0.05em] z-[1] whitespace-nowrap text-[clamp(10rem,27.06vw,25.571rem)] font-semibold lowercase leading-none tracking-[-0.04em] text-white/[0.05]" dir="ltr">
+        <div aria-hidden="true" class="bg-watermark doctor-intro-mark pointer-events-none absolute -top-[0.25em] left-[-0.05em] z-[1] whitespace-nowrap text-[clamp(10rem,27.06vw,25.571rem)] font-semibold lowercase leading-none tracking-[-0.04em] text-white/[0.05]" dir="ltr">
           precision
         </div>
 
-        <div class="relative z-[2] mx-auto flex w-full max-w-[112.5rem] flex-1 flex-col justify-end">
-          <div class="intro-bio reveal blur-reveal flex flex-col self-center pb-4 md:pb-8">
-            <p class="intro-bio-name order-1 ar-w300 text-[clamp(1.35rem,3.2vw,2.5rem)] font-light leading-[1.15] tracking-[-0.03em] text-white" data-i18n="intro.bioName">
+        <div class="relative z-[2] mx-auto flex w-full max-w-[112.5rem] flex-1 flex-col justify-end doctor-intro-content">
+          <div class="intro-bio flex flex-col self-center pb-4 md:pb-8">
+            <p class="intro-bio-name doctor-intro-item order-1 ar-w300 text-[clamp(1.35rem,3.2vw,2.5rem)] font-light leading-[1.15] tracking-[-0.03em] text-white" data-i18n="intro.bioName">
               Dr. Abdulfattah Ziad Al-shukargy
             </p>
-            <p class="intro-bio-role order-2 ar-w300 mx-auto mt-3 max-w-[22rem] text-[clamp(0.8rem,1.7vw,1rem)] font-light leading-[1.4] tracking-[-0.01em] text-white/55" data-i18n="intro.bioRole">
+            <p class="intro-bio-role doctor-intro-item doctor-intro-item--d1 order-2 ar-w300 mx-auto mt-3 max-w-[22rem] text-[clamp(0.8rem,1.7vw,1rem)] font-light leading-[1.4] tracking-[-0.01em] text-white/55" data-i18n="intro.bioRole">
               Practicing dentist &amp; dental technician
             </p>
-            <div class="intro-bio-creds order-3 mt-8">
+            <div class="intro-bio-creds doctor-intro-item doctor-intro-item--d2 order-3 mt-8">
               <div class="cred-seal">
                 <span class="cred-seal-abbr" data-i18n="intro.bioDegree1">BDS</span>
                 <span class="cred-seal-years" data-i18n="intro.bioDegree1Years">8 yrs</span>
@@ -2444,6 +2461,132 @@
         <div class="disciplines-blocks">
           <div class="discipline-block">
             <div class="discipline-intro reveal reveal-d1">
+              <h3 class="ar-lead ar-w300 text-[clamp(1.35rem,3.4vw,2.25rem)] font-light leading-[1.15] tracking-[-0.03em] text-[#050609]" data-i18n="disciplines.micropath.introTitle">
+                Micropath Dental Laboratory
+              </h3>
+              <div class="discipline-intro-copy">
+                <p class="mt-5 text-[clamp(0.95rem,2vw,1.1rem)] font-light leading-[1.65] text-[#050609]/75 lg:mt-0" data-i18n="disciplines.micropath.introP1">
+                  I am the owner and founder of Micropath Dental Laboratory, a specialized dental laboratory focused on high-quality prosthetic and aesthetic restorations.
+                </p>
+                <p class="mt-4 text-[clamp(0.95rem,2vw,1.1rem)] font-light leading-[1.65] text-[#050609]/75 lg:mt-0" data-i18n="disciplines.micropath.introP2">
+                  Our work focuses particularly on fixed prosthodontics, including veneers, crowns, smile rehabilitation, full-arch restorations, and feldspathic restorations, with an emphasis on meticulous details, natural aesthetics, and accurate clinical-laboratory communication.
+                </p>
+              </div>
+            </div>
+
+            <article class="discipline-panel reveal" data-discipline="micropath" style="--discipline: #E8C49A;">
+              <button type="button" class="discipline-trigger discipline-trigger--hero discipline-trigger--micropath group outline-none focus-visible:ring-2 focus-visible:ring-[#E8C49A]" aria-expanded="false" aria-controls="micropath-panel" aria-label="Micropath Lab">
+                <img src="assets/micropath/micropath-logo.png" alt="" class="discipline-trigger-bg discipline-trigger-bg--logo" aria-hidden="true">
+                <span class="discipline-trigger-overlay" aria-hidden="true"></span>
+                <span class="discipline-trigger-label">
+                  <address class="discipline-trigger-location not-italic" data-i18n-html="micropathLab.address">
+                    Yarmook, Baghdad, Iraq 10015
+                  </address>
+                  <span class="mt-1 block font-['Inter',sans-serif] text-[clamp(1.85rem,7vw,3.25rem)] font-semibold uppercase leading-[0.92] tracking-[-0.04em] text-white">Micropath Lab</span>
+                </span>
+                <span class="discipline-chevron" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 9l6 6 6-6"/>
+                  </svg>
+                </span>
+              </button>
+              <div id="micropath-panel" class="discipline-slide" aria-hidden="true">
+                <div class="discipline-slide-inner">
+                  <div id="micropath-feature" class="bg-[#EDE6DC] px-5 py-16 text-[#050609] md:px-6 md:py-24">
+                    <div class="discipline-feature-inner mx-auto max-w-[72rem]">
+                      <div class="panel-reveal">
+                        <h2 class="ar-w800 text-[clamp(2.75rem,7vw,6.5rem)] font-semibold uppercase leading-[0.82] tracking-[-0.08em]" data-i18n-html="disciplines.micropath.casesTitle">
+                          Cases
+                        </h2>
+                        <figure class="mt-8 overflow-hidden bg-[#050609]">
+                          <img loading="lazy" src="assets/micropath/cases-feature.jpg" alt="" class="cases-feature-img cases-feature-img--contain">
+                        </figure>
+                      </div>
+
+                      <h3 class="panel-reveal reveal-d1 ar-w800 mt-12 text-[clamp(1.75rem,4.5vw,3.5rem)] font-semibold uppercase leading-[0.9] tracking-[-0.06em] text-[#050609]" data-i18n="disciplines.micropath.servicesLabel">
+                        Services
+                      </h3>
+
+                      <div class="panel-reveal reveal-d2 visible-services-grid mt-6 grid grid-cols-2 overflow-hidden rounded-sm">
+                        <article class="case-topic border-b border-e border-[#050609]/10">
+                          <img loading="lazy" src="assets/micropath/topic-crowns.png" alt="" class="case-topic-bg">
+                          <div class="case-topic-scrim" aria-hidden="true"></div>
+                          <div class="case-topic-content">
+                            <div>
+                              <h3 class="text-[clamp(0.95rem,3.5vw,1.25rem)] font-light text-white" data-i18n="disciplines.micropath.t1">Crowns</h3>
+                            </div>
+                          </div>
+                        </article>
+                        <article class="case-topic border-b border-[#050609]/10">
+                          <img loading="lazy" src="assets/micropath/topic-bridges.png" alt="" class="case-topic-bg">
+                          <div class="case-topic-scrim" aria-hidden="true"></div>
+                          <div class="case-topic-content">
+                            <div>
+                              <h3 class="text-[clamp(0.95rem,3.5vw,1.25rem)] font-light text-white" data-i18n="disciplines.micropath.t2">Bridges</h3>
+                            </div>
+                          </div>
+                        </article>
+                        <article class="case-topic border-e border-[#050609]/10">
+                          <img loading="lazy" src="assets/micropath/topic-veneers.png" alt="" class="case-topic-bg">
+                          <div class="case-topic-scrim" aria-hidden="true"></div>
+                          <div class="case-topic-content">
+                            <div>
+                              <h3 class="text-[clamp(0.95rem,3.5vw,1.25rem)] font-light text-white" data-i18n="disciplines.micropath.t3">Veneers</h3>
+                            </div>
+                          </div>
+                        </article>
+                        <article class="case-topic">
+                          <img loading="lazy" src="assets/micropath/topic-fullarch.png" alt="" class="case-topic-bg">
+                          <div class="case-topic-scrim" aria-hidden="true"></div>
+                          <div class="case-topic-content">
+                            <div>
+                              <h3 class="text-[clamp(0.95rem,3.5vw,1.25rem)] font-light text-white" data-i18n="disciplines.micropath.t4">Full-arch</h3>
+                            </div>
+                          </div>
+                        </article>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <footer id="micropath-lab" class="clinic-bar clinic-bar--lab">
+                <div class="clinic-bar-state clinic-bar-state--closed">
+                  <p class="clinic-bar-hint" data-i18n="micropathLab.openHint">Open to see more of the lab services</p>
+                </div>
+                <div class="clinic-bar-state clinic-bar-state--open">
+                  <div class="clinic-bar-inner">
+                    <div class="clinic-bar-item">
+                      <span class="clinic-bar-icon" aria-hidden="true">
+                        <iconify-icon icon="solar:map-point-linear" width="16" height="16"></iconify-icon>
+                      </span>
+                      <span class="clinic-bar-copy">
+                        <span class="clinic-bar-label" data-i18n="micropathLab.locationLabel">Location</span>
+                        <address class="clinic-bar-value not-italic" data-i18n-html="micropathLab.address">
+                          Yarmook, Baghdad, Iraq 10015
+                        </address>
+                      </span>
+                    </div>
+                    <div class="clinic-bar-item">
+                      <span class="clinic-bar-icon" aria-hidden="true">
+                        <iconify-icon icon="solar:calendar-linear" width="16" height="16"></iconify-icon>
+                      </span>
+                      <span class="clinic-bar-copy">
+                        <span class="clinic-bar-label" data-i18n="micropathLab.hoursLabel">Hours</span>
+                        <span class="clinic-bar-value" data-i18n="micropathLab.hours">Sat → Thu</span>
+                      </span>
+                    </div>
+                    <a href="https://www.instagram.com/micropath_lab/" target="_blank" rel="noreferrer" class="clinic-bar-ig">
+                      <iconify-icon icon="mdi:instagram" width="16" height="16"></iconify-icon>
+                      <span data-i18n="micropathLab.ig">Watch our work on Instagram</span>
+                    </a>
+                  </div>
+                </div>
+              </footer>
+            </article>
+          </div>
+        <div class="discipline-block">
+            <div class="discipline-intro reveal">
               <h3 class="ar-lead ar-w300 text-[clamp(1.35rem,3.4vw,2.25rem)] font-light leading-[1.15] tracking-[-0.03em] text-[#050609]" data-i18n="disciplines.visible.introTitle">
                 Visible Dental Clinic
               </h3>
@@ -2458,8 +2601,8 @@
             </div>
 
             <article class="discipline-panel reveal" data-discipline="visible" style="--discipline: #6EB5E8;">
-              <button type="button" class="discipline-trigger discipline-trigger--hero group outline-none focus-visible:ring-2 focus-visible:ring-[#6EB5E8]" aria-expanded="false" aria-controls="visible-panel" aria-label="Visible Clinic">
-                <img src="assets/visible/visible-trigger-bg.png" alt="" class="discipline-trigger-bg discipline-trigger-bg--top" aria-hidden="true">
+              <button type="button" class="discipline-trigger discipline-trigger--hero discipline-trigger--visible group outline-none focus-visible:ring-2 focus-visible:ring-[#6EB5E8]" aria-expanded="false" aria-controls="visible-panel" aria-label="Visible Clinic">
+                <img src="assets/visible/visible-logo.png" alt="" class="discipline-trigger-bg discipline-trigger-bg--logo" aria-hidden="true">
                 <span class="discipline-trigger-overlay" aria-hidden="true"></span>
                 <span class="discipline-trigger-label">
                   <address class="discipline-trigger-location not-italic" data-i18n-html="visibleClinic.address">
@@ -2467,7 +2610,6 @@
                     مجاور مطعم أروما
                   </address>
                   <span class="mt-1 block font-['Inter',sans-serif] text-[clamp(1.85rem,7vw,3.25rem)] font-semibold uppercase leading-[0.92] tracking-[-0.04em] text-white">Visible Clinic</span>
-                  <img src="assets/visible/visible-logo.png" alt="" class="discipline-trigger-logo" aria-hidden="true">
                 </span>
                 <span class="discipline-chevron" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -2497,7 +2639,6 @@
                           <img loading="lazy" src="assets/visible/topic-ortho.png" alt="" class="case-topic-bg">
                           <div class="case-topic-scrim" aria-hidden="true"></div>
                           <div class="case-topic-content">
-                            <span class="font-['IBM_Plex_Mono',monospace] text-[10px] tracking-[0.16em] text-white/55">01</span>
                             <div>
                               <h3 class="text-[clamp(0.95rem,3.5vw,1.25rem)] font-light text-white" data-i18n="disciplines.visible.t1">Orthodontics</h3>
                             </div>
@@ -2507,7 +2648,6 @@
                           <img loading="lazy" src="assets/visible/topic-implants.png" alt="" class="case-topic-bg">
                           <div class="case-topic-scrim" aria-hidden="true"></div>
                           <div class="case-topic-content">
-                            <span class="font-['IBM_Plex_Mono',monospace] text-[10px] tracking-[0.16em] text-white/55">02</span>
                             <div>
                               <h3 class="text-[clamp(0.95rem,3.5vw,1.25rem)] font-light text-white" data-i18n="disciplines.visible.t2">Implants</h3>
                             </div>
@@ -2517,7 +2657,6 @@
                           <img loading="lazy" src="assets/visible/topic-veneers.png" alt="" class="case-topic-bg">
                           <div class="case-topic-scrim" aria-hidden="true"></div>
                           <div class="case-topic-content">
-                            <span class="font-['IBM_Plex_Mono',monospace] text-[10px] tracking-[0.16em] text-white/55">03</span>
                             <div>
                               <h3 class="text-[clamp(0.95rem,3.5vw,1.25rem)] font-light text-white" data-i18n="disciplines.visible.t3">Veneer placement</h3>
                             </div>
@@ -2527,7 +2666,6 @@
                           <img loading="lazy" src="assets/visible/topic-fillings.png" alt="" class="case-topic-bg">
                           <div class="case-topic-scrim" aria-hidden="true"></div>
                           <div class="case-topic-content">
-                            <span class="font-['IBM_Plex_Mono',monospace] text-[10px] tracking-[0.16em] text-white/55">04</span>
                             <div>
                               <h3 class="text-[clamp(0.95rem,3.5vw,1.25rem)] font-light text-white" data-i18n="disciplines.visible.t4">Dental fillings</h3>
                             </div>
@@ -2545,15 +2683,6 @@
                 </div>
                 <div class="clinic-bar-state clinic-bar-state--open">
                   <div class="clinic-bar-inner">
-                    <a href="tel:07768883326" class="clinic-bar-item" dir="ltr">
-                      <span class="clinic-bar-icon" aria-hidden="true">
-                        <iconify-icon icon="solar:phone-linear" width="16" height="16"></iconify-icon>
-                      </span>
-                      <span class="clinic-bar-copy">
-                        <span class="clinic-bar-label" data-i18n="visibleClinic.phoneLabel">Phone</span>
-                        <span class="clinic-bar-value clinic-bar-phone">07768883326</span>
-                      </span>
-                    </a>
                     <div class="clinic-bar-item">
                       <span class="clinic-bar-icon" aria-hidden="true">
                         <iconify-icon icon="solar:map-point-linear" width="16" height="16"></iconify-icon>
@@ -2585,265 +2714,67 @@
             </article>
           </div>
 
-          <div class="discipline-block">
-            <div class="discipline-intro reveal">
-              <h3 class="ar-lead ar-w300 text-[clamp(1.35rem,3.4vw,2.25rem)] font-light leading-[1.15] tracking-[-0.03em] text-[#050609]" data-i18n="disciplines.micropath.introTitle">
-                Micropath Dental Laboratory
-              </h3>
-              <div class="discipline-intro-copy">
-                <p class="mt-5 text-[clamp(0.95rem,2vw,1.1rem)] font-light leading-[1.65] text-[#050609]/75 lg:mt-0" data-i18n="disciplines.micropath.introP1">
-                  I am the owner and founder of Micropath Dental Laboratory, a specialized dental laboratory focused on high-quality prosthetic and aesthetic restorations.
-                </p>
-                <p class="mt-4 text-[clamp(0.95rem,2vw,1.1rem)] font-light leading-[1.65] text-[#050609]/75 lg:mt-0" data-i18n="disciplines.micropath.introP2">
-                  Our work focuses particularly on fixed prosthodontics, including veneers, crowns, smile rehabilitation, full-arch restorations, and feldspathic restorations, with an emphasis on meticulous details, natural aesthetics, and accurate clinical-laboratory communication.
-                </p>
-              </div>
-            </div>
-
-            <article class="discipline-panel reveal" data-discipline="micropath" style="--discipline: #E8C49A;">
-              <button type="button" class="discipline-trigger discipline-trigger--hero group outline-none focus-visible:ring-2 focus-visible:ring-[#E8C49A]" aria-expanded="false" aria-controls="micropath-panel" aria-label="Micropath Lab">
-                <img src="assets/micropath/micropath-trigger-bg.png" alt="" class="discipline-trigger-bg discipline-trigger-bg--top" aria-hidden="true">
-                <span class="discipline-trigger-overlay" aria-hidden="true"></span>
-                <span class="discipline-trigger-label">
-                  <address class="discipline-trigger-location not-italic" data-i18n-html="micropathLab.address">
-                    Yarmook, Baghdad, Iraq 10015
-                  </address>
-                  <span class="mt-1 block font-['Inter',sans-serif] text-[clamp(1.85rem,7vw,3.25rem)] font-semibold uppercase leading-[0.92] tracking-[-0.04em] text-white">Micropath Lab</span>
-                  <img src="assets/micropath/micropath-logo.png" alt="" class="discipline-trigger-logo" aria-hidden="true">
-                </span>
-                <span class="discipline-chevron" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 9l6 6 6-6"/>
-                  </svg>
-                </span>
-              </button>
-              <div id="micropath-panel" class="discipline-slide" aria-hidden="true">
-                <div class="discipline-slide-inner">
-                  <div id="micropath-feature" class="bg-[#EDE6DC] px-5 py-16 text-[#050609] md:px-6 md:py-24">
-                    <div class="discipline-feature-inner mx-auto max-w-[72rem]">
-                      <div class="panel-reveal">
-                        <h2 class="ar-w800 text-[clamp(2.75rem,7vw,6.5rem)] font-semibold uppercase leading-[0.82] tracking-[-0.08em]" data-i18n-html="disciplines.micropath.casesTitle">
-                          Cases
-                        </h2>
-                        <figure class="mt-8 overflow-hidden bg-[#050609]">
-                          <img loading="lazy" src="assets/micropath/cases-feature.jpg" alt="" class="cases-feature-img cases-feature-img--contain">
-                        </figure>
-                      </div>
-
-                      <h3 class="panel-reveal reveal-d1 ar-w800 mt-12 text-[clamp(1.75rem,4.5vw,3.5rem)] font-semibold uppercase leading-[0.9] tracking-[-0.06em] text-[#050609]" data-i18n="disciplines.micropath.servicesLabel">
-                        Services
-                      </h3>
-
-                      <div class="panel-reveal reveal-d2 visible-services-grid mt-6 grid grid-cols-2 overflow-hidden rounded-sm">
-                        <article class="case-topic border-b border-e border-[#050609]/10">
-                          <img loading="lazy" src="assets/micropath/topic-crowns.png" alt="" class="case-topic-bg">
-                          <div class="case-topic-scrim" aria-hidden="true"></div>
-                          <div class="case-topic-content">
-                            <span class="font-['IBM_Plex_Mono',monospace] text-[10px] tracking-[0.16em] text-white/55">01</span>
-                            <div>
-                              <h3 class="text-[clamp(0.95rem,3.5vw,1.25rem)] font-light text-white" data-i18n="disciplines.micropath.t1">Crowns</h3>
-                            </div>
-                          </div>
-                        </article>
-                        <article class="case-topic border-b border-[#050609]/10">
-                          <img loading="lazy" src="assets/micropath/topic-bridges.png" alt="" class="case-topic-bg">
-                          <div class="case-topic-scrim" aria-hidden="true"></div>
-                          <div class="case-topic-content">
-                            <span class="font-['IBM_Plex_Mono',monospace] text-[10px] tracking-[0.16em] text-white/55">02</span>
-                            <div>
-                              <h3 class="text-[clamp(0.95rem,3.5vw,1.25rem)] font-light text-white" data-i18n="disciplines.micropath.t2">Bridges</h3>
-                            </div>
-                          </div>
-                        </article>
-                        <article class="case-topic border-e border-[#050609]/10">
-                          <img loading="lazy" src="assets/micropath/topic-veneers.png" alt="" class="case-topic-bg">
-                          <div class="case-topic-scrim" aria-hidden="true"></div>
-                          <div class="case-topic-content">
-                            <span class="font-['IBM_Plex_Mono',monospace] text-[10px] tracking-[0.16em] text-white/55">03</span>
-                            <div>
-                              <h3 class="text-[clamp(0.95rem,3.5vw,1.25rem)] font-light text-white" data-i18n="disciplines.micropath.t3">Veneers</h3>
-                            </div>
-                          </div>
-                        </article>
-                        <article class="case-topic">
-                          <img loading="lazy" src="assets/micropath/topic-fullarch.png" alt="" class="case-topic-bg">
-                          <div class="case-topic-scrim" aria-hidden="true"></div>
-                          <div class="case-topic-content">
-                            <span class="font-['IBM_Plex_Mono',monospace] text-[10px] tracking-[0.16em] text-white/55">04</span>
-                            <div>
-                              <h3 class="text-[clamp(0.95rem,3.5vw,1.25rem)] font-light text-white" data-i18n="disciplines.micropath.t4">Full-arch</h3>
-                            </div>
-                          </div>
-                        </article>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <footer id="micropath-lab" class="clinic-bar clinic-bar--lab">
-                <div class="clinic-bar-state clinic-bar-state--closed">
-                  <p class="clinic-bar-hint" data-i18n="micropathLab.openHint">Open to see more of the lab services</p>
-                </div>
-                <div class="clinic-bar-state clinic-bar-state--open">
-                  <div class="clinic-bar-inner">
-                    <div class="clinic-bar-item">
-                      <span class="clinic-bar-icon" aria-hidden="true">
-                        <iconify-icon icon="solar:phone-linear" width="16" height="16"></iconify-icon>
-                      </span>
-                      <span class="clinic-bar-copy">
-                        <span class="clinic-bar-label" data-i18n="micropathLab.phoneLabel">Phone</span>
-                        <div class="clinic-bar-phones" dir="ltr">
-                          <a href="tel:07755005521">07755005521</a>
-                          <a href="tel:07776998896">07776998896</a>
-                          <a href="tel:07777007815">07777007815</a>
-                          <a href="tel:07777007814">07777007814</a>
-                        </div>
-                      </span>
-                    </div>
-                    <div class="clinic-bar-item">
-                      <span class="clinic-bar-icon" aria-hidden="true">
-                        <iconify-icon icon="solar:map-point-linear" width="16" height="16"></iconify-icon>
-                      </span>
-                      <span class="clinic-bar-copy">
-                        <span class="clinic-bar-label" data-i18n="micropathLab.locationLabel">Location</span>
-                        <address class="clinic-bar-value not-italic" data-i18n-html="micropathLab.address">
-                          Yarmook, Baghdad, Iraq 10015
-                        </address>
-                      </span>
-                    </div>
-                    <div class="clinic-bar-item">
-                      <span class="clinic-bar-icon" aria-hidden="true">
-                        <iconify-icon icon="solar:calendar-linear" width="16" height="16"></iconify-icon>
-                      </span>
-                      <span class="clinic-bar-copy">
-                        <span class="clinic-bar-label" data-i18n="micropathLab.hoursLabel">Hours</span>
-                        <span class="clinic-bar-value" data-i18n="micropathLab.hours">Sat → Thu</span>
-                      </span>
-                    </div>
-                    <a href="https://www.instagram.com/micropath_lab/" target="_blank" rel="noreferrer" class="clinic-bar-ig">
-                      <iconify-icon icon="mdi:instagram" width="16" height="16"></iconify-icon>
-                      <span data-i18n="micropathLab.ig">Watch our work on Instagram</span>
-                    </a>
-                  </div>
-                </div>
-              </footer>
-            </article>
           </div>
-        </div>
       </section>
 
-      <!-- CERAMIST COURSES -->
-      <section id="courses" class="courses-section px-5 py-24 text-white md:px-6 md:py-36">
+      <!-- PRIVATE COURSES -->
+      <section id="courses" class="courses-section text-white">
+        <img
+          src="assets/courses/private-courses.jpg"
+          alt=""
+          class="courses-section-bg"
+          aria-hidden="true"
+        >
+        <div class="courses-section-veil" aria-hidden="true"></div>
         <div class="courses-shell">
           <header class="courses-head reveal">
-            <p class="font-['IBM_Plex_Mono',monospace] text-[10px] uppercase tracking-[0.18em] text-white/40" data-i18n="courses.kicker">
-              Courses
-            </p>
-            <h2 class="ar-lead ar-w300 mt-4 text-[clamp(1.85rem,4.5vw,3.5rem)] font-light leading-[1.1] tracking-[-0.03em]" data-i18n-html="courses.title">
-              Ceramist
-              <br>
-              courses
+            <p class="courses-kicker" data-i18n="courses.kicker">Courses</p>
+            <h2 class="ar-lead ar-w300 courses-title" data-i18n-html="courses.title">
+              Private Courses
             </h2>
-            <p class="mt-6 text-[clamp(0.95rem,2vw,1.15rem)] font-light leading-[1.65] text-white/65" data-i18n="courses.lead">
-              Hands-on ceramic training for dentists and dental technicians — focused on morphology, layering, translucency, and finishing that holds under close looking.
+            <p class="courses-lead" data-i18n="courses.lead">
+              Hands-on ceramic training for dentists and dental technicians.
             </p>
-
-            <dl class="courses-meta">
-              <div>
-                <dt data-i18n="courses.metaAudienceLabel">Audience</dt>
-                <dd data-i18n="courses.metaAudience">Dentists &amp; technicians</dd>
+            <div class="courses-social">
+              <a
+                class="courses-social-link"
+                href="https://wa.me/9647711554411?text=Hello%2C%20I%20would%20like%20to%20book%20a%20private%20course."
+                target="_blank"
+                rel="noopener noreferrer"
+                data-i18n-aria="courses.whatsappAria"
+                data-wa-base="https://wa.me/9647711554411"
+                data-i18n-wa="courses.whatsappMsg"
+                aria-label="Book a private course on WhatsApp"
+              >
+                <iconify-icon icon="mdi:whatsapp" width="18" height="18" aria-hidden="true"></iconify-icon>
+                <span data-i18n="courses.whatsapp">Booking Course</span>
+              </a>
+              <div class="courses-social-group">
+                <a
+                  class="courses-social-link"
+                  href="https://www.facebook.com/share/1GsxXNJWju/?mibextid=wwXIfr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-i18n-aria="courses.facebookAria"
+                  aria-label="Private courses on Facebook"
+                >
+                  <iconify-icon icon="mdi:facebook" width="18" height="18" aria-hidden="true"></iconify-icon>
+                  <span data-i18n="courses.facebook">Facebook</span>
+                </a>
+                <a
+                  class="courses-social-link"
+                  href="https://www.instagram.com/abdulfattah.z.alshukargy/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-i18n-aria="courses.instagramAria"
+                  aria-label="Private courses on Instagram"
+                >
+                  <iconify-icon icon="mdi:instagram" width="18" height="18" aria-hidden="true"></iconify-icon>
+                  <span data-i18n="courses.instagram">Instagram</span>
+                </a>
               </div>
-              <div>
-                <dt data-i18n="courses.metaFormatLabel">Format</dt>
-                <dd data-i18n="courses.metaFormat">Hands-on studio</dd>
-              </div>
-              <div>
-                <dt data-i18n="courses.metaFocusLabel">Focus</dt>
-                <dd data-i18n="courses.metaFocus">Ceramic craft</dd>
-              </div>
-            </dl>
-
-            <a
-              class="courses-whatsapp"
-              href="https://wa.me/9647768883326?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%AD%D8%AC%D8%B2%20%D8%AF%D9%88%D8%B1%D8%A9%20%D8%AE%D8%B2%D9%81"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-i18n-aria="courses.whatsappAria"
-              data-wa-base="https://wa.me/9647768883326"
-              data-i18n-wa="courses.whatsappMsg"
-              aria-label="Book a ceramist course on WhatsApp"
-            >
-              <iconify-icon icon="mdi:whatsapp" width="18" height="18" aria-hidden="true"></iconify-icon>
-              <span data-i18n="courses.whatsapp">Book on WhatsApp</span>
-            </a>
+            </div>
           </header>
-
-          <div class="courses-program">
-            <figure class="courses-visual reveal reveal-d1">
-              <img loading="lazy" src="assets/doctor/courses-instructor.jpg" alt="Dr. Abdulfattah Al-Shukargy">
-              <figcaption class="courses-visual-caption" data-i18n="courses.visualCaption">Course instructor</figcaption>
-            </figure>
-
-            <div class="reveal reveal-d1">
-              <p class="courses-modules-label" data-i18n="courses.modulesLabel">Program modules</p>
-              <ol class="courses-list">
-                <li class="courses-item reveal reveal-d1">
-                  <div class="courses-item-top">
-                    <span class="courses-item-index">01</span>
-                    <span class="courses-item-tag" data-i18n="courses.moduleTag">Module</span>
-                  </div>
-                  <h3 data-i18n="courses.c1.title">Feldspathic ceramics</h3>
-                  <p data-i18n="courses.c1.body">
-                    Build natural enamel effects with controlled layering — edge light, chroma, and life-like translucency.
-                  </p>
-                </li>
-                <li class="courses-item reveal reveal-d2">
-                  <div class="courses-item-top">
-                    <span class="courses-item-index">02</span>
-                    <span class="courses-item-tag" data-i18n="courses.moduleTag">Module</span>
-                  </div>
-                  <h3 data-i18n="courses.c2.title">Morphology &amp; form</h3>
-                  <p data-i18n="courses.c2.body">
-                    Shape anatomy that functions and photographs cleanly — contacts, emergence, and surface texture.
-                  </p>
-                </li>
-                <li class="courses-item reveal reveal-d3">
-                  <div class="courses-item-top">
-                    <span class="courses-item-index">03</span>
-                    <span class="courses-item-tag" data-i18n="courses.moduleTag">Module</span>
-                  </div>
-                  <h3 data-i18n="courses.c3.title">Finishing &amp; glaze</h3>
-                  <p data-i18n="courses.c3.body">
-                    Refine margins, polish strategy, and glaze control so restorations stay precise after seating.
-                  </p>
-                </li>
-              </ol>
-            </div>
-          </div>
-
-          <div class="courses-enroll reveal">
-            <div>
-              <p class="courses-enroll-label" data-i18n="courses.instructorLabel">Instructor</p>
-              <p class="courses-enroll-name" data-i18n="courses.instructorName">Dr. Abdulfattah Al-Shukargy</p>
-              <p class="courses-enroll-note" data-i18n="courses.note">
-                Courses are led by Dr. Abdulfattah Al-Shukargy — dentist, dental technician, and ceramist — with practice-based demos and case discussion.
-              </p>
-            </div>
-            <a
-              class="courses-whatsapp courses-whatsapp--solid"
-              href="https://wa.me/9647768883326?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%AD%D8%AC%D8%B2%20%D8%AF%D9%88%D8%B1%D8%A9%20%D8%AE%D8%B2%D9%81"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-i18n-aria="courses.whatsappAria"
-              data-wa-base="https://wa.me/9647768883326"
-              data-i18n-wa="courses.whatsappMsg"
-              aria-label="Book a ceramist course on WhatsApp"
-            >
-              <iconify-icon icon="mdi:whatsapp" width="18" height="18" aria-hidden="true"></iconify-icon>
-              <span data-i18n="courses.whatsapp">Book on WhatsApp</span>
-            </a>
-          </div>
         </div>
       </section>
 
@@ -3013,26 +2944,86 @@
         });
 
         const revealElements = document.querySelectorAll('.reveal, .blur-reveal');
+        const doctorIntro = document.getElementById('doctor');
+        const scrollMotionRoots = [
+          ...document.querySelectorAll('#disciplines .disciplines-head, #disciplines .discipline-block, #courses .courses-shell, .site-footer-inner'),
+        ];
+        const liveRevealSet = new Set(
+          [...document.querySelectorAll('#disciplines .reveal, #courses .reveal, .site-footer .reveal')]
+        );
+
+        scrollMotionRoots.forEach((el) => el.classList.add('scroll-motion'));
+
+        const clamp01 = (n) => Math.max(0, Math.min(1, n));
+        const smoothstep = (a, b, x) => {
+          const t = clamp01((x - a) / (b - a));
+          return t * t * (3 - 2 * t);
+        };
+
+        let motionRaf = 0;
+        const updateScrollMotion = () => {
+          motionRaf = 0;
+          const vh = window.innerHeight || 1;
+          scrollMotionRoots.forEach((el) => {
+            const rect = el.getBoundingClientRect();
+            const enter = smoothstep(vh * 0.95, vh * 0.42, rect.top);
+            const leave = smoothstep(vh * 0.08, vh * 0.55, rect.bottom);
+            const progress = clamp01(Math.min(enter, leave));
+            el.style.setProperty('--scroll-progress', progress.toFixed(4));
+          });
+        };
+
+        const kickScrollMotion = () => {
+          if (!motionRaf) motionRaf = requestAnimationFrame(updateScrollMotion);
+        };
+
+        const setDoctorIntro = (on) => {
+          if (doctorIntro) doctorIntro.classList.toggle('is-intro-in', on);
+        };
 
         if (reduceMotion) {
           revealElements.forEach(element => element.classList.add('is-in'));
+          scrollMotionRoots.forEach((el) => el.style.setProperty('--scroll-progress', '1'));
+          setDoctorIntro(true);
         } else if ('IntersectionObserver' in window) {
           const revealObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => {
+              const live = liveRevealSet.has(entry.target);
+              if (live) {
+                entry.target.classList.toggle('is-in', entry.isIntersecting);
+                return;
+              }
               if (!entry.isIntersecting) return;
               entry.target.classList.add('is-in');
               revealObserver.unobserve(entry.target);
             });
           }, {
-            threshold: isMobileMotion ? 0.08 : 0.14,
-            rootMargin: isMobileMotion ? '0px 0px -6% 0px' : '0px 0px -10% 0px',
+            threshold: isMobileMotion ? [0, 0.08, 0.18] : [0, 0.12, 0.22],
+            rootMargin: isMobileMotion ? '0px 0px -4% 0px' : '0px 0px -8% 0px',
           });
 
           revealElements.forEach(element => revealObserver.observe(element));
 
-          /* Safety: never leave content stuck hidden on flaky mobile observers */
+          if (doctorIntro) {
+            const doctorObserver = new IntersectionObserver(entries => {
+              entries.forEach(entry => {
+                setDoctorIntro(entry.isIntersecting && entry.intersectionRatio > 0.18);
+              });
+            }, {
+              threshold: [0, 0.18, 0.35, 0.55],
+              rootMargin: '0px 0px -6% 0px',
+            });
+            doctorObserver.observe(doctorIntro);
+          }
+
+          window.addEventListener('scroll', kickScrollMotion, { passive: true });
+          window.addEventListener('resize', kickScrollMotion, { passive: true });
+          kickScrollMotion();
+
+          /* Safety: never leave early-page content stuck hidden */
           window.setTimeout(() => {
             revealElements.forEach(element => {
+              if (liveRevealSet.has(element)) return;
               if (!element.classList.contains('is-in')) {
                 element.classList.add('is-in');
                 revealObserver.unobserve(element);
@@ -3041,6 +3032,8 @@
           }, 5000);
         } else {
           revealElements.forEach(element => element.classList.add('is-in'));
+          scrollMotionRoots.forEach((el) => el.style.setProperty('--scroll-progress', '1'));
+          setDoctorIntro(true);
         }
 
         const videoObserver = new IntersectionObserver(entries => {
@@ -3237,7 +3230,7 @@
     </script>
 
     <style>
-      .cinematic-scroll-stage{position:relative;height:220svh;background:#000}
+      .cinematic-scroll-stage{position:relative;height:340svh;background:#000}
       .cinematic-pin{position:sticky;top:0;height:100svh;overflow:visible;isolation:isolate}
       .cinematic-hero{
         --bio-progress:0;
@@ -3255,20 +3248,34 @@
       .cinematic-copy{position:absolute;z-index:10}
       .cinematic-copy-a{margin:0}
       .cinematic-title-one{z-index:10}
-      .hero-bio-sheet{position:absolute;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;background:transparent;color:#050609;transform:translate3d(0,calc((1 - var(--bio-progress, 0)) * 105%),0);will-change:transform;pointer-events:none;overflow:visible}
-      .hero-bio-sheet-fog{position:absolute;left:-25%;right:-25%;top:-20%;bottom:-25%;z-index:0;pointer-events:none;background:radial-gradient(ellipse 70% 55% at 50% 55%,#fff 0%,#fff 42%,rgba(255,255,255,.92) 58%,rgba(255,255,255,.55) 72%,rgba(255,255,255,.2) 84%,transparent 100%);filter:blur(2.5rem);transform:translateZ(0);opacity:calc(0.55 + var(--bio-progress, 0) * 0.45)}
-      .cinematic-pin[data-bio-open="1"] .hero-bio-sheet{pointer-events:auto}
-      .hero-bio-sheet-inner{position:relative;z-index:1;width:min(42rem,92vw);max-height:min(88svh,100%);overflow:auto;padding:clamp(2rem,5vw,3.5rem) clamp(1.25rem,4vw,2.5rem);display:flex;flex-direction:column;gap:1.35rem;-webkit-overflow-scrolling:touch;opacity:var(--text-progress, 0);transform:translate3d(0,calc((1 - var(--text-progress, 0)) * 1.1rem),0);will-change:opacity,transform;backface-visibility:hidden;contain:layout paint}
-      .hero-bio-p{margin:0;font-family:"Inter",Helvetica,Arial,sans-serif;font-size:clamp(0.95rem,2.1vw,1.2rem);font-weight:400;line-height:1.65;letter-spacing:-0.01em;color:#050609}
+      .hero-bio-sheet{position:absolute;inset:0;z-index:20;display:flex;align-items:flex-start;justify-content:center;box-sizing:border-box;padding:clamp(38svh,42svh,46svh) 0 clamp(1.25rem,4vh,2.75rem);background:transparent;color:#fff;transform:translate3d(0,calc((1 - var(--bio-progress, 0)) * 105%),0);will-change:transform;pointer-events:none;overflow:visible}
+      .hero-bio-sheet:not(.hero-vision-sheet){opacity:calc(1 - var(--bio-exit, 0));filter:blur(calc(var(--bio-exit, 0) * 18px)) brightness(calc(1 - var(--bio-exit, 0) * 0.35));transform:translate3d(0,calc((1 - var(--bio-progress, 0)) * 105% + var(--bio-exit, 0) * -2.5%),0) scale(calc(1 + var(--bio-exit, 0) * 0.045));transform-origin:center 40%;will-change:transform,opacity,filter;visibility:var(--bio-exit-visibility, visible)}
+      .hero-vision-sheet{z-index:22;transform:translate3d(0,calc((1 - var(--vision-progress, 0)) * 105%),0);padding-top:clamp(44svh,48svh,52svh)}
+      .hero-bio-sheet-visual{position:absolute;inset:0;z-index:0;pointer-events:none;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.08) 10%,rgba(0,0,0,.28) 20%,rgba(0,0,0,.55) 32%,rgba(0,0,0,.82) 46%,#000 58%,#000 100%);mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.08) 10%,rgba(0,0,0,.28) 20%,rgba(0,0,0,.55) 32%,rgba(0,0,0,.82) 46%,#000 58%,#000 100%);-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+      .hero-bio-sheet-visual::before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(to bottom,transparent 0%,rgba(5,6,9,.2) 18%,rgba(5,6,9,.55) 36%,rgba(5,6,9,.82) 54%,#050609 70%,#050609 100%)}
+      .hero-bio-sheet-bg{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:center 24%;pointer-events:none;filter:blur(1.5px);transform:scale(1.12);transform-origin:center 14%;opacity:.9}
+      #hero-bio .hero-bio-sheet-bg{transform:scaleX(-1) scale(1.12)}
+      .hero-vision-sheet-bg{object-position:center 18%;transform-origin:center 12%}
+      .hero-bio-sheet-fog{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to bottom,transparent 0%,rgba(5,6,9,.15) 22%,rgba(5,6,9,.4) 40%,rgba(5,6,9,.65) 58%,rgba(5,6,9,.85) 78%,rgba(5,6,9,.94) 100%),radial-gradient(ellipse 78% 62% at 50% 58%,rgba(5,6,9,.3) 0%,rgba(5,6,9,.48) 48%,rgba(5,6,9,.7) 72%,rgba(5,6,9,.88) 100%);transform:translateZ(0);opacity:calc(0.55 + var(--bio-progress, 0) * 0.45)}
+      .hero-vision-sheet .hero-bio-sheet-fog{opacity:calc(0.55 + var(--vision-progress, 0) * 0.45)}
+      .cinematic-pin[data-bio-open="1"] .hero-bio-sheet:not(.hero-vision-sheet){pointer-events:auto}
+      .cinematic-pin[data-vision-open="1"] .hero-vision-sheet{pointer-events:auto}
+      .cinematic-pin[data-vision-open="1"] .hero-bio-sheet:not(.hero-vision-sheet){pointer-events:none}
+      .hero-bio-sheet-inner{position:relative;z-index:2;width:min(42rem,92vw);max-height:min(54svh,100%);overflow:auto;padding:0.35rem clamp(1.25rem,4vw,2.5rem) clamp(1.5rem,4vw,2.75rem);display:flex;flex-direction:column;gap:1.35rem;-webkit-overflow-scrolling:touch;opacity:var(--text-progress, 0);transform:translate3d(0,calc((1 - var(--text-progress, 0)) * 1.1rem),0);will-change:opacity,transform;backface-visibility:hidden;contain:layout paint}
+      .hero-vision-sheet-inner{opacity:var(--vision-text-progress, 0);transform:translate3d(0,calc((1 - var(--vision-text-progress, 0)) * 1.1rem),0);max-height:min(42svh,100%)}
+      .hero-bio-p{margin:0;font-family:"Inter",Helvetica,Arial,sans-serif;font-size:clamp(0.95rem,2.1vw,1.2rem);font-weight:400;line-height:1.65;letter-spacing:-0.01em;color:rgba(255,255,255,.92)}
+      .hero-vision-sheet .hero-bio-p{color:rgba(255,255,255,.9)}
       html[lang="ar"] .hero-bio-p{font-family:"Almarai","Noto Sans Arabic","Inter",sans-serif;font-weight:300;line-height:1.75}
-      @media(max-width:809px){.cinematic-scroll-stage{height:220svh}.hero-bio-sheet-inner{gap:1.1rem}.hero-bio-p{font-size:clamp(0.9rem,3.8vw,1.05rem);line-height:1.6}}
-      @media(prefers-reduced-motion:reduce){.cinematic-scroll-stage{height:auto}.cinematic-pin{position:relative;height:auto}.cinematic-hero{position:relative!important;inset:auto;--bio-progress:0;filter:none;transform:none}.cinematic-title-one,.cinematic-copy,.cinematic-copy-a{opacity:1!important;transform:none!important}.hero-t1-label{opacity:1!important}.hero-bio-sheet{position:relative;transform:none;pointer-events:auto;background:#fff;overflow:hidden}.hero-bio-sheet-fog{display:none}.hero-bio-sheet-inner{opacity:1!important;transform:none!important}}
+      @media(max-width:809px){.cinematic-scroll-stage{height:340svh}.hero-bio-sheet-inner{gap:1.1rem}.hero-bio-p{font-size:clamp(0.9rem,3.8vw,1.05rem);line-height:1.6}.hero-bio-sheet-bg{object-position:center 22%}.hero-vision-sheet-bg{object-position:center 16%}}
+      @media(min-width:810px){.hero-bio-sheet-bg{object-position:center 18%;transform:scale(1.1);transform-origin:center 12%}#hero-bio .hero-bio-sheet-bg{transform:scaleX(-1) scale(1.1)}.hero-vision-sheet-bg{object-position:center 14%;transform-origin:center 10%}}
+      @media(prefers-reduced-motion:reduce){.cinematic-scroll-stage{height:auto}.cinematic-pin{position:relative;height:auto;display:flex;flex-direction:column}.cinematic-hero{position:relative!important;inset:auto;--bio-progress:0;filter:none;transform:none}.cinematic-title-one,.cinematic-copy,.cinematic-copy-a{opacity:1!important;transform:none!important}.hero-t1-label{opacity:1!important}.hero-bio-sheet{position:relative;transform:none;pointer-events:auto;overflow:visible}.hero-bio-sheet:not(.hero-vision-sheet){opacity:1!important;filter:none!important;visibility:visible!important;transform:none!important}.hero-bio-sheet-fog{opacity:1}.hero-bio-sheet-inner,.hero-vision-sheet-inner{opacity:1!important;transform:none!important}}
     </style>
     <script>
       (() => {
         const setupCinematicHero = () => {
           const hero = document.getElementById('home');
           const bio = document.getElementById('hero-bio');
+          const vision = document.getElementById('hero-vision');
           if (!hero || hero.parentElement.classList.contains('cinematic-scroll-stage')) return;
 
           const stage = document.createElement('div');
@@ -3277,54 +3284,83 @@
           pin.className = 'cinematic-pin';
           pin.style.setProperty('--bio-progress', '0');
           pin.style.setProperty('--text-progress', '0');
+          pin.style.setProperty('--vision-progress', '0');
+          pin.style.setProperty('--vision-text-progress', '0');
+          pin.style.setProperty('--bio-exit', '0');
+          pin.style.setProperty('--bio-exit-visibility', 'visible');
 
           hero.parentNode.insertBefore(stage, hero);
           stage.appendChild(pin);
           pin.appendChild(hero);
           if (bio) pin.appendChild(bio);
+          if (vision) pin.appendChild(vision);
 
           const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 
+          const clamp01 = (x) => Math.max(0, Math.min(1, x));
           const smoothstep = (edge0, edge1, x) => {
-            const t = Math.max(0, Math.min(1, (x - edge0) / (edge1 - edge0)));
+            const t = clamp01((x - edge0) / (edge1 - edge0));
             return t * t * (3 - 2 * t);
           };
 
           let bioTarget = 0;
           let bioCurrent = 0;
           let textCurrent = 0;
+          let visionTarget = 0;
+          let visionCurrent = 0;
+          let visionTextCurrent = 0;
           let lerpRaf = 0;
           const isCoarse = matchMedia('(pointer: coarse), (max-width: 809px)').matches;
           const bioLerp = isCoarse ? 0.22 : 0.14;
           const textLerp = isCoarse ? 0.18 : 0.11;
 
           const applyProgress = () => {
+            const sheet = Math.max(bioCurrent, visionCurrent);
+            const bioExit = smoothstep(0, 0.72, visionCurrent);
             const v = bioCurrent.toFixed(4);
             pin.style.setProperty('--bio-progress', v);
-            hero.style.setProperty('--bio-progress', v);
+            hero.style.setProperty('--bio-progress', sheet.toFixed(4));
             pin.style.setProperty('--text-progress', textCurrent.toFixed(4));
-            pin.dataset.bioOpen = bioCurrent > 0.55 ? '1' : '0';
+            pin.style.setProperty('--vision-progress', visionCurrent.toFixed(4));
+            pin.style.setProperty('--vision-text-progress', visionTextCurrent.toFixed(4));
+            pin.style.setProperty('--bio-exit', bioExit.toFixed(4));
+            pin.style.setProperty('--bio-exit-visibility', bioExit >= 0.995 ? 'hidden' : 'visible');
+            pin.dataset.bioOpen = bioCurrent > 0.55 && visionCurrent < 0.45 ? '1' : '0';
+            pin.dataset.visionOpen = visionCurrent > 0.55 ? '1' : '0';
           };
 
           const readScrollTarget = () => {
             const rect = stage.getBoundingClientRect();
             const travel = Math.max(1, stage.offsetHeight - window.innerHeight);
             const scrolled = Math.min(travel, Math.max(0, -rect.top));
-            bioTarget = scrolled / travel;
+            const overall = scrolled / travel;
+            bioTarget = clamp01(overall / 0.48);
+            visionTarget = clamp01((overall - 0.5) / 0.46);
           };
 
           const lerpTick = () => {
             readScrollTarget();
             bioCurrent += (bioTarget - bioCurrent) * bioLerp;
+            visionCurrent += (visionTarget - visionCurrent) * bioLerp;
             const textTarget = smoothstep(0.42, 0.82, bioCurrent);
+            const visionTextTarget = smoothstep(0.38, 0.8, visionCurrent);
             textCurrent += (textTarget - textCurrent) * textLerp;
+            visionTextCurrent += (visionTextTarget - visionTextCurrent) * textLerp;
 
             if (Math.abs(bioTarget - bioCurrent) < 0.0008) bioCurrent = bioTarget;
+            if (Math.abs(visionTarget - visionCurrent) < 0.0008) visionCurrent = visionTarget;
             if (Math.abs(textTarget - textCurrent) < 0.0008) textCurrent = textTarget;
+            if (Math.abs(visionTextTarget - visionTextCurrent) < 0.0008) visionTextCurrent = visionTextTarget;
 
             applyProgress();
 
-            if (Math.abs(bioTarget - bioCurrent) > 0.0008 || Math.abs(textTarget - textCurrent) > 0.0008) {
+            const moving =
+              Math.abs(bioTarget - bioCurrent) > 0.0008 ||
+              Math.abs(visionTarget - visionCurrent) > 0.0008 ||
+              Math.abs(textTarget - textCurrent) > 0.0008 ||
+              Math.abs(visionTextTarget - visionTextCurrent) > 0.0008;
+
+            if (moving) {
               lerpRaf = requestAnimationFrame(lerpTick);
             } else {
               lerpRaf = 0;
@@ -3338,6 +3374,8 @@
           if (reduced.matches) {
             bioCurrent = bioTarget = 1;
             textCurrent = 1;
+            visionCurrent = visionTarget = 1;
+            visionTextCurrent = 1;
             applyProgress();
             return;
           }
